@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Background Layers</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-layer bg-primary"></div>
+  <div class="bg-layer bg-dark"></div>
+  <div class="bg-layer bg-overlay"></div>
+
+  <nav class="site-nav">
+    <a href="#about" class="active">About</a>
+    <a href="#advertising">Advertising</a>
+    <a href="#games">Games</a>
+    <a href="#skills">Skills</a>
+    <a href="#artist">Artist</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <div class="content">
+    <section id="about">
+      <div style="display:flex; flex-direction:column; align-items:center; padding: 40px 8rem 6rem 3rem;">
+
+        <!-- Radial GIF -->
+        <canvas id="radialCanvas" width="420" height="420"></canvas>
+
+        <!-- Bio -->
+        <div style="max-width:680px; width:100%; margin-top:2.5rem; text-align:center;">
+
+          <h1 style="font-family:Georgia,serif; font-size:1.6rem; font-weight:400; color:rgba(255,255,255,0.95); letter-spacing:0.06em; margin:0 0 0.4rem;">Tornike “Toke” Nikolaishvili</h1>
+          <p style="font-family:Georgia,serif; font-size:0.7rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin:0 0 2.5rem;">Sound Designer &bull; Music Producer &bull; Audio Engineer</p>
+
+          <p style="font-family:Georgia,serif; font-size:0.92rem; line-height:1.85; color:rgba(255,255,255,0.7); margin:0 0 1.2rem;">Born in Tbilisi, Georgia and currently based in Vancouver, Canada, Tornike “Toke” Nikolaishvili is a sound designer, music producer, and audio engineer with more than 20 years of experience in music production, sound design, and audio engineering.</p>
+
+          <p style="font-family:Georgia,serif; font-size:0.92rem; line-height:1.85; color:rgba(255,255,255,0.7); margin:0 0 1.2rem;">Specializing in game audio, interactive sound design, and electronic music production, Toke creates immersive sound experiences that combine technical precision with emotional impact. His work includes sound effects, adaptive music loops, UI audio, ambient textures, transition effects, and slot-style game audio systems.</p>
+
+          <p style="font-family:Georgia,serif; font-size:0.92rem; line-height:1.85; color:rgba(255,255,255,0.7); margin:0 0 1.2rem;">With advanced expertise in Ableton Live, he has collaborated on freelance game audio projects with developers, artists, and designers to deliver polished, production-ready audio assets optimized for performance and gameplay integration.</p>
+
+          <p style="font-family:Georgia,serif; font-size:0.92rem; line-height:1.85; color:rgba(255,255,255,0.7); margin:0 0 1.2rem;">From 2019 to 2023, Toke worked as an Ableton Live mentor at 303Hz Academy in Tbilisi, teaching music production, sound design, workflow development, and creative audio techniques to emerging producers and artists.</p>
+
+          <p style="font-family:Georgia,serif; font-size:0.92rem; line-height:1.85; color:rgba(255,255,255,0.7); margin:0 0 1.2rem;">Alongside his work in game audio and music production, Toke is also one of the founders and CEOs of Swing Festival in Poti, Georgia &mdash; a festival centered around electronic music, underground culture, sound, and immersive artistic experiences.</p>
+
+          <p style="font-family:Georgia,serif; font-size:0.92rem; line-height:1.85; color:rgba(255,255,255,0.7); margin:0 0 3rem;">His creative approach blends experimental sound design, technical audio engineering, rhythm, atmosphere, and a deep understanding of frequencies and interactive environments.</p>
+
+          <!-- Two columns: Core Focus + Software -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; text-align:left; margin-bottom:3rem;">
+
+            <div>
+              <p style="font-family:Georgia,serif; font-size:0.62rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin:0 0 1rem;">Core Focus</p>
+              <ul style="list-style:none; padding:0; margin:0;">
+                <li style="font-family:Georgia,serif; font-size:0.88rem; color:rgba(255,255,255,0.65); padding:0.3rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Game Audio Design</li>
+                <li style="font-family:Georgia,serif; font-size:0.88rem; color:rgba(255,255,255,0.65); padding:0.3rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Interactive Sound Systems</li>
+                <li style="font-family:Georgia,serif; font-size:0.88rem; color:rgba(255,255,255,0.65); padding:0.3rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Slot Game Audio</li>
+                <li style="font-family:Georgia,serif; font-size:0.88rem; color:rgba(255,255,255,0.65); padding:0.3rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Electronic Music Production</li>
+                <li style="font-family:Georgia,serif; font-size:0.88rem; color:rgba(255,255,255,0.65); padding:0.3rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">UI / UX Audio</li>
+                <li style="font-family:Georgia,serif; font-size:0.88rem; color:rgba(255,255,255,0.65); padding:0.3rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Sound Effects &amp; Foley</li>
+                <li style="font-family:Georgia,serif; font-size:0.88rem; color:rgba(255,255,255,0.65); padding:0.3rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Adaptive Music Loops</li>
+                <li style="font-family:Georgia,serif; font-size:0.88rem; color:rgba(255,255,255,0.65); padding:0.3rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Mixing &amp; Mastering</li>
+                <li style="font-family:Georgia,serif; font-size:0.88rem; color:rgba(255,255,255,0.65); padding:0.3rem 0;">Audio Optimization</li>
+              </ul>
+            </div>
+
+            <div>
+              <p style="font-family:Georgia,serif; font-size:0.62rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin:0 0 1rem;">Software</p>
+              <ul style="list-style:none; padding:0; margin:0;">
+                <li style="font-family:Georgia,serif; font-size:0.88rem; color:rgba(255,255,255,0.65); padding:0.3rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Ableton Live <span style="color:rgba(255,255,255,0.3); font-size:0.75rem;">(Expert)</span></li>
+                <li style="font-family:Georgia,serif; font-size:0.88rem; color:rgba(255,255,255,0.65); padding:0.3rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">FL Studio</li>
+                <li style="font-family:Georgia,serif; font-size:0.88rem; color:rgba(255,255,255,0.65); padding:0.3rem 0;">Professional VST &amp; Audio Plugins</li>
+              </ul>
+
+              <p style="font-family:Georgia,serif; font-size:0.62rem; letter-spacing:0.25em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin:2rem 0 1rem;">Availability</p>
+              <p style="font-family:Georgia,serif; font-size:0.88rem; color:rgba(255,255,255,0.65); line-height:1.7; margin:0;">Available for Remote, Freelance,<br>Contract, and Full-Time Opportunities.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="advertising">
+      <div style="padding:4rem 8rem 4rem 3rem;">
+        <p style="font-family:Georgia,serif; font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin:0 0 2.5rem 0;">Advertising</p>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+
+          <div class="vcard" style="border-radius:8px; overflow:hidden; background:rgba(255,255,255,0.03); border:0.5px solid rgba(255,255,255,0.08); cursor:pointer; transition:border 0.2s;">
+            <div class="video-thumb" data-src="https://drive.google.com/file/d/10k0kOu9OI0Vy98BV7wzIkbyfU_cnYYDr/preview" style="aspect-ratio:16/9; position:relative; overflow:hidden; background:#000; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+              <div class="play-btn" style="width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.35); display:flex; align-items:center; justify-content:center; transition:all 0.2s; flex-shrink:0;">
+                <svg width="18" height="20" viewBox="0 0 18 20" fill="none"><path d="M2 2L16 10L2 18V2Z" fill="white" opacity="0.9"/></svg>
+              </div>
+            </div>
+            <div style="padding:10px 14px 12px;">
+              <p style="margin:0; font-size:13px; font-weight:500; color:rgba(255,255,255,0.88); font-family:Georgia,serif; letter-spacing:0.03em;">TBC Offers</p>
+              <p style="margin:4px 0 0; font-size:10px; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase;">Advertising</p>
+            </div>
+          </div>
+          <div class="vcard" style="border-radius:8px; overflow:hidden; background:rgba(255,255,255,0.03); border:0.5px solid rgba(255,255,255,0.08); cursor:pointer; transition:border 0.2s;">
+            <div class="video-thumb" data-src="https://drive.google.com/file/d/1VcNj7G_iR8sJJWbNumyWZlLp0Yxe7PfB/preview" style="aspect-ratio:16/9; position:relative; overflow:hidden; background:#000; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+              <div class="play-btn" style="width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.35); display:flex; align-items:center; justify-content:center; transition:all 0.2s; flex-shrink:0;">
+                <svg width="18" height="20" viewBox="0 0 18 20" fill="none"><path d="M2 2L16 10L2 18V2Z" fill="white" opacity="0.9"/></svg>
+              </div>
+            </div>
+            <div style="padding:10px 14px 12px;">
+              <p style="margin:0; font-size:13px; font-weight:500; color:rgba(255,255,255,0.88); font-family:Georgia,serif; letter-spacing:0.03em;">Lamborghini</p>
+              <p style="margin:4px 0 0; font-size:10px; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase;">Advertising</p>
+            </div>
+          </div>
+          <div class="vcard" style="border-radius:8px; overflow:hidden; background:rgba(255,255,255,0.03); border:0.5px solid rgba(255,255,255,0.08); cursor:pointer; transition:border 0.2s;">
+            <div class="video-thumb" data-src="https://drive.google.com/file/d/1drNXwn1asPEm5ULZUw_QGJztVnU7hfs5/preview" style="aspect-ratio:16/9; position:relative; overflow:hidden; background:#000; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+              <div class="play-btn" style="width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.35); display:flex; align-items:center; justify-content:center; transition:all 0.2s; flex-shrink:0;">
+                <svg width="18" height="20" viewBox="0 0 18 20" fill="none"><path d="M2 2L16 10L2 18V2Z" fill="white" opacity="0.9"/></svg>
+              </div>
+            </div>
+            <div style="padding:10px 14px 12px;">
+              <p style="margin:0; font-size:13px; font-weight:500; color:rgba(255,255,255,0.88); font-family:Georgia,serif; letter-spacing:0.03em;">TBC Offers 2</p>
+              <p style="margin:4px 0 0; font-size:10px; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase;">Advertising</p>
+            </div>
+          </div>
+          <div class="vcard" style="border-radius:8px; overflow:hidden; background:rgba(255,255,255,0.03); border:0.5px solid rgba(255,255,255,0.08); cursor:pointer; transition:border 0.2s;">
+            <div class="video-thumb" data-src="https://drive.google.com/file/d/1GPKcGpI2rd2Iixvv7puLAU911p9Bw08_/preview" style="aspect-ratio:16/9; position:relative; overflow:hidden; background:#000; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+              <div class="play-btn" style="width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.35); display:flex; align-items:center; justify-content:center; transition:all 0.2s; flex-shrink:0;">
+                <svg width="18" height="20" viewBox="0 0 18 20" fill="none"><path d="M2 2L16 10L2 18V2Z" fill="white" opacity="0.9"/></svg>
+              </div>
+            </div>
+            <div style="padding:10px 14px 12px;">
+              <p style="margin:0; font-size:13px; font-weight:500; color:rgba(255,255,255,0.88); font-family:Georgia,serif; letter-spacing:0.03em;">TBC Offers 3</p>
+              <p style="margin:4px 0 0; font-size:10px; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase;">Advertising</p>
+            </div>
+          </div>
+          <div class="vcard" style="border-radius:8px; overflow:hidden; background:rgba(255,255,255,0.03); border:0.5px solid rgba(255,255,255,0.08); cursor:pointer; transition:border 0.2s;">
+            <div class="video-thumb" data-src="https://drive.google.com/file/d/16FOkqdit62N42qBxh_mLfg37RyuK-Q4z/preview" style="aspect-ratio:16/9; position:relative; overflow:hidden; background:#000; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+              <div class="play-btn" style="width:52px; height:52px; border-radius:50%; background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.35); display:flex; align-items:center; justify-content:center; transition:all 0.2s; flex-shrink:0;">
+                <svg width="18" height="20" viewBox="0 0 18 20" fill="none"><path d="M2 2L16 10L2 18V2Z" fill="white" opacity="0.9"/></svg>
+              </div>
+            </div>
+            <div style="padding:10px 14px 12px;">
+              <p style="margin:0; font-size:13px; font-weight:500; color:rgba(255,255,255,0.88); font-family:Georgia,serif; letter-spacing:0.03em;">Bakuriani World Ski Sport Championship</p>
+              <p style="margin:4px 0 0; font-size:10px; color:rgba(255,255,255,0.3); letter-spacing:0.1em; text-transform:uppercase;">Advertising</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="games"><!-- Games videos here --></section>
+    <section id="skills" style="min-height:100vh;">
+      <div style="padding: 4rem 8rem 6rem 3rem; display:flex; flex-direction:column; align-items:center;">
+        <div style="max-width:780px; width:100%;">
+          <p style="font-family:Georgia,serif; font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin:0 0 3rem;">Skills</p>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:2rem;">
+
+            <div>
+              <p style="font-family:Georgia,serif; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin:0 0 1.2rem;">Sound Design</p>
+              <ul style="list-style:none; padding:0; margin:0;">
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Game Audio Design</li>
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Interactive Sound Systems</li>
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Slot Game Audio</li>
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Adaptive Music Loops</li>
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Sound Effects &amp; Foley</li>
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0;">Ambient Textures</li>
+              </ul>
+            </div>
+
+            <div>
+              <p style="font-family:Georgia,serif; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin:0 0 1.2rem;">Production</p>
+              <ul style="list-style:none; padding:0; margin:0;">
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Electronic Music Production</li>
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Mixing &amp; Mastering</li>
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">UI / UX Audio</li>
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Audio Optimization</li>
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0;">Transition Effects</li>
+              </ul>
+            </div>
+
+            <div>
+              <p style="font-family:Georgia,serif; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin:0 0 1.2rem;">Software</p>
+              <ul style="list-style:none; padding:0; margin:0;">
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Ableton Live <span style="color:rgba(255,255,255,0.3); font-size:0.75rem;">(Expert)</span></li>
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">FL Studio</li>
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0;">Professional VST &amp; Plugins</li>
+              </ul>
+
+              <p style="font-family:Georgia,serif; font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin:2.5rem 0 1.2rem;">Experience</p>
+              <ul style="list-style:none; padding:0; margin:0;">
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">20+ Years in Audio</li>
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0; border-bottom:0.5px solid rgba(255,255,255,0.06);">Ableton Mentor 2019&ndash;2023</li>
+                <li style="font-family:Georgia,serif; font-size:0.85rem; color:rgba(255,255,255,0.65); padding:0.35rem 0;">Swing Festival Co-Founder</li>
+              </ul>
+            </div>
+
+          </div>
+
+
+
+          <!-- Creative Audio Toolkit -->
+          <div style="margin-top:4rem;">
+            <div style="width:100%; height:0.5px; background:rgba(255,255,255,0.07); margin-bottom:3rem;"></div>
+            <p style="font-family:Georgia,serif; font-size:0.62rem; letter-spacing:0.3em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin:0 0 2.5rem;">Creative Audio Toolkit</p>
+
+            <div style="display:grid; grid-template-columns:repeat(5,1fr); gap:1.2rem;">
+
+              <div class="logo-card" style="border-radius:10px; border:0.5px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); padding:1.5rem 1rem; display:flex; flex-direction:column; align-items:center; gap:0.75rem; cursor:default; transition:all 0.3s;">
+                <svg width="38" height="28" viewBox="0 0 38 28" fill="none"><rect x="0" y="6" width="4" height="16" rx="1" fill="white" opacity="0.9"/><rect x="6" y="2" width="4" height="24" rx="1" fill="white" opacity="0.9"/><rect x="12" y="0" width="4" height="28" rx="1" fill="white" opacity="0.9"/><rect x="18" y="4" width="4" height="20" rx="1" fill="white" opacity="0.9"/><rect x="24" y="8" width="4" height="12" rx="1" fill="white" opacity="0.9"/><rect x="30" y="10" width="4" height="8" rx="1" fill="white" opacity="0.9"/></svg>
+                <span style="font-family:'Arial',sans-serif; font-size:0.72rem; color:rgba(255,255,255,0.6); letter-spacing:0.12em; text-transform:uppercase; text-align:center;">Ableton</span>
+              </div>
+
+              <div class="logo-card" style="border-radius:10px; border:0.5px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); padding:1.5rem 1rem; display:flex; flex-direction:column; align-items:center; gap:0.75rem; cursor:default; transition:all 0.3s;">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="10" r="9" fill="#FF6B00" opacity="0.9"/><circle cx="16" cy="9" r="5" fill="#FFB347"/><circle cx="14" cy="7" r="2" fill="#FFD700"/><path d="M8 19 Q16 32 24 19" stroke="#FF6B00" stroke-width="2" fill="none" opacity="0.7"/></svg>
+                <span style="font-family:'Arial',sans-serif; font-size:0.72rem; color:rgba(255,255,255,0.6); letter-spacing:0.12em; text-transform:uppercase; text-align:center;">FL Studio</span>
+              </div>
+
+              <div class="logo-card" style="border-radius:10px; border:0.5px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); padding:1.5rem 1rem; display:flex; flex-direction:column; align-items:center; gap:0.75rem; cursor:default; transition:all 0.3s;">
+                <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="8" width="2" height="4" rx="1" fill="white" opacity="0.8"/><rect x="5" y="4" width="2" height="12" rx="1" fill="white" opacity="0.8"/><rect x="9" y="0" width="2" height="20" rx="1" fill="white" opacity="0.8"/><rect x="13" y="6" width="2" height="8" rx="1" fill="white" opacity="0.8"/><rect x="17" y="2" width="2" height="16" rx="1" fill="white" opacity="0.8"/><rect x="21" y="8" width="2" height="4" rx="1" fill="white" opacity="0.8"/><circle cx="28" cy="10" r="3" fill="none" stroke="white" stroke-width="1.5" opacity="0.8"/><circle cx="28" cy="10" r="1" fill="white" opacity="0.8"/></svg>
+                <span style="font-family:'Arial',sans-serif; font-size:0.72rem; color:rgba(255,255,255,0.6); letter-spacing:0.12em; text-transform:uppercase; text-align:center;">FabFilter</span>
+              </div>
+
+              <div class="logo-card" style="border-radius:10px; border:0.5px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); padding:1.5rem 1rem; display:flex; flex-direction:column; align-items:center; gap:0.75rem; cursor:default; transition:all 0.3s;">
+                <svg width="36" height="24" viewBox="0 0 36 24" fill="none"><path d="M2 20 L8 4 L11 14 L14 8 L17 16 L20 4 L23 12 L26 8 L29 16 L34 4" stroke="#4A9EFF" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span style="font-family:'Arial',sans-serif; font-size:0.72rem; color:rgba(255,255,255,0.6); letter-spacing:0.12em; text-transform:uppercase; text-align:center;">iZotope RX</span>
+              </div>
+
+              <div class="logo-card" style="border-radius:10px; border:0.5px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); padding:1.5rem 1rem; display:flex; flex-direction:column; align-items:center; gap:0.75rem; cursor:default; transition:all 0.3s;">
+                <svg width="34" height="24" viewBox="0 0 34 24" fill="none"><rect x="2" y="10" width="30" height="4" rx="1" fill="white" opacity="0.15"/><path d="M2 12 Q8 2 17 12 Q26 22 32 12" stroke="white" stroke-width="2" fill="none" opacity="0.9"/><circle cx="17" cy="12" r="3" fill="#7B4FFF" opacity="0.9"/></svg>
+                <span style="font-family:'Arial',sans-serif; font-size:0.72rem; color:rgba(255,255,255,0.6); letter-spacing:0.12em; text-transform:uppercase; text-align:center;">Serum</span>
+              </div>
+
+              <div class="logo-card" style="border-radius:10px; border:0.5px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); padding:1.5rem 1rem; display:flex; flex-direction:column; align-items:center; gap:0.75rem; cursor:default; transition:all 0.3s;">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="13" stroke="white" stroke-width="1.5" opacity="0.8"/><path d="M9 15 L13 10 L17 15 L21 10" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.9"/></svg>
+                <span style="font-family:'Arial',sans-serif; font-size:0.72rem; color:rgba(255,255,255,0.6); letter-spacing:0.12em; text-transform:uppercase; text-align:center;">Kontakt</span>
+              </div>
+
+              <div class="logo-card" style="border-radius:10px; border:0.5px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); padding:1.5rem 1rem; display:flex; flex-direction:column; align-items:center; gap:0.75rem; cursor:default; transition:all 0.3s;">
+                <svg width="36" height="24" viewBox="0 0 36 24" fill="none"><path d="M4 18 L9 6 L14 18" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/><path d="M14 18 L19 6 L24 18" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/><line x1="6" y1="14" x2="12" y2="14" stroke="white" stroke-width="1.5" opacity="0.6"/><line x1="16" y1="14" x2="22" y2="14" stroke="white" stroke-width="1.5" opacity="0.6"/></svg>
+                <span style="font-family:'Arial',sans-serif; font-size:0.72rem; color:rgba(255,255,255,0.6); letter-spacing:0.12em; text-transform:uppercase; text-align:center;">Waves</span>
+              </div>
+
+              <div class="logo-card" style="border-radius:10px; border:0.5px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); padding:1.5rem 1rem; display:flex; flex-direction:column; align-items:center; gap:0.75rem; cursor:default; transition:all 0.3s;">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13" fill="none" stroke="#4ABFFF" stroke-width="1.5" opacity="0.9"/><path d="M16 3 Q28 16 16 29 Q4 16 16 3" fill="#4ABFFF" opacity="0.25"/><circle cx="16" cy="16" r="5" fill="none" stroke="#4ABFFF" stroke-width="1.2" opacity="0.8"/></svg>
+                <span style="font-family:'Arial',sans-serif; font-size:0.72rem; color:rgba(255,255,255,0.6); letter-spacing:0.12em; text-transform:uppercase; text-align:center;">Ozone</span>
+              </div>
+
+              <div class="logo-card" style="border-radius:10px; border:0.5px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); padding:1.5rem 1rem; display:flex; flex-direction:column; align-items:center; gap:0.75rem; cursor:default; transition:all 0.3s;">
+                <svg width="36" height="20" viewBox="0 0 36 20" fill="none"><text x="2" y="15" font-family="Georgia,serif" font-size="14" fill="white" opacity="0.85" font-style="italic">Valhalla</text></svg>
+                <span style="font-family:'Arial',sans-serif; font-size:0.72rem; color:rgba(255,255,255,0.6); letter-spacing:0.12em; text-transform:uppercase; text-align:center;">Valhalla</span>
+              </div>
+
+              <div class="logo-card" style="border-radius:10px; border:0.5px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); padding:1.5rem 1rem; display:flex; flex-direction:column; align-items:center; gap:0.75rem; cursor:default; transition:all 0.3s;">
+                <svg width="40" height="22" viewBox="0 0 40 22" fill="none"><text x="1" y="16" font-family="Arial,sans-serif" font-size="13" font-weight="900" fill="#D4A84B" opacity="0.9" letter-spacing="1">RC-20</text></svg>
+                <span style="font-family:'Arial',sans-serif; font-size:0.72rem; color:rgba(255,255,255,0.6); letter-spacing:0.12em; text-transform:uppercase; text-align:center;">RC-20</span>
+              </div>
+
+              <div class="logo-card" style="border-radius:10px; border:0.5px solid rgba(255,255,255,0.07); background:rgba(255,255,255,0.02); padding:1.5rem 1rem; display:flex; flex-direction:column; align-items:center; gap:0.75rem; cursor:default; transition:all 0.3s;">
+                <svg width="36" height="24" viewBox="0 0 36 24" fill="none"><text x="1" y="17" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white" opacity="0.85" letter-spacing="1">fmod</text></svg>
+                <span style="font-family:'Arial',sans-serif; font-size:0.72rem; color:rgba(255,255,255,0.6); letter-spacing:0.12em; text-transform:uppercase; text-align:center;">FMOD</span>
+              </div>
+
+            </div>
+          </div>
+
+          <link rel="stylesheet" href="style.css">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="artist"><!-- Artist content here --></section>
+    <section id="contact"><!-- Contact content here --></section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
