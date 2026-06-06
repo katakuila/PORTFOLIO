@@ -119,6 +119,8 @@
   if (scBar) {
     var trackUrl = scBar.getAttribute('data-track');
     var scIframe = document.getElementById('soundcloudPlayer');
+    var audioHint = document.getElementById('audioHint');
+    var isTouchDevice = window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
 
     if (trackUrl && scIframe) {
       var scParams = [
@@ -136,47 +138,87 @@
       scIframe.src = 'https://w.soundcloud.com/player/?' + scParams;
 
       var scWidget = null;
-      var hasStarted = false;
+      var scReady = false;
+      var audioStarted = false;
+      var hintTimer = null;
 
-      function startMusic() {
-        if (!scWidget || hasStarted) return;
-        scWidget.play();
-        scWidget.isPaused(function (paused) {
-          if (!paused) hasStarted = true;
-        });
+      function hideAudioHint() {
+        if (audioHint) audioHint.hidden = true;
       }
 
-      function bindFirstInteraction() {
-        var events = ['click', 'touchstart', 'keydown'];
-        function onInteract() {
-          startMusic();
-          events.forEach(function (name) {
-            document.removeEventListener(name, onInteract);
-          });
+      function showAudioHint() {
+        if (audioHint && isTouchDevice && !audioStarted) {
+          audioHint.hidden = false;
         }
-        events.forEach(function (name) {
-          document.addEventListener(name, onInteract);
+      }
+
+      function markPlaying() {
+        audioStarted = true;
+        hideAudioHint();
+        if (hintTimer) clearTimeout(hintTimer);
+      }
+
+      function tryPlayMusic() {
+        if (!scWidget || !scReady || audioStarted) return;
+        scWidget.play();
+      }
+
+      function onAudioGesture() {
+        if (audioStarted) return;
+        tryPlayMusic();
+        if (!scWidget || !scReady) return;
+
+        scWidget.isPaused(function (paused) {
+          if (!paused) markPlaying();
         });
       }
 
-      var scScript = document.createElement('script');
-      scScript.src = 'https://w.soundcloud.com/player/api.js';
-      scScript.onload = function () {
+      function bindAudioGestures() {
+        var opts = { capture: true, passive: true };
+        ['touchstart', 'touchend', 'click'].forEach(function (name) {
+          document.addEventListener(name, onAudioGesture, opts);
+        });
+        if (canvas) {
+          canvas.addEventListener('touchstart', onAudioGesture, opts);
+          canvas.addEventListener('click', onAudioGesture, opts);
+        }
+      }
+
+      function initSoundCloudWidget() {
+        if (typeof SC === 'undefined') return;
         scWidget = SC.Widget(scIframe);
+        scReady = false;
 
         scWidget.bind(SC.Widget.Events.READY, function () {
-          startMusic();
-          setTimeout(startMusic, 500);
-          setTimeout(startMusic, 1500);
+          scReady = true;
+          tryPlayMusic();
+
+          scWidget.isPaused(function (paused) {
+            if (paused) {
+              hintTimer = setTimeout(showAudioHint, 1200);
+            } else {
+              markPlaying();
+            }
+          });
         });
 
-        scWidget.bind(SC.Widget.Events.PLAY, function () {
-          hasStarted = true;
-        });
+        scWidget.bind(SC.Widget.Events.PLAY, markPlaying);
 
-        bindFirstInteraction();
-      };
-      document.head.appendChild(scScript);
+        scWidget.bind(SC.Widget.Events.ERROR, function () {
+          showAudioHint();
+        });
+      }
+
+      bindAudioGestures();
+
+      if (typeof SC !== 'undefined') {
+        initSoundCloudWidget();
+      } else {
+        var scScript = document.createElement('script');
+        scScript.src = 'https://w.soundcloud.com/player/api.js';
+        scScript.onload = initSoundCloudWidget;
+        document.head.appendChild(scScript);
+      }
     }
   }
 

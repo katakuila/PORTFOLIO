@@ -251,8 +251,10 @@
 
   .soundcloud-hidden {
     position: fixed;
-    width: 0;
-    height: 0;
+    left: -9999px;
+    top: 0;
+    width: 276px;
+    height: 166px;
     overflow: hidden;
     opacity: 0;
     pointer-events: none;
@@ -260,9 +262,33 @@
   }
 
   .soundcloud-hidden iframe {
-    width: 1px;
-    height: 1px;
+    width: 276px;
+    height: 166px;
     border: none;
+  }
+
+  .audio-hint {
+    font-family: Georgia, serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+    animation: audio-hint-pulse 2s ease-in-out infinite;
+  }
+
+  .audio-hint[hidden] {
+    display: none;
+  }
+
+  @keyframes audio-hint-pulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.75; }
+  }
+
+  .home-hero #radialCanvas {
+    cursor: pointer;
+    touch-action: manipulation;
   }
 
   .page-section {
