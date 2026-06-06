@@ -114,18 +114,14 @@
     draw();
   }
 
-  // SoundCloud player (home page only)
+  // SoundCloud player (home page only, hidden — audio only)
   var scBar = document.getElementById('soundcloudBar');
   if (scBar) {
     var trackUrl = scBar.getAttribute('data-track');
     var scIframe = document.getElementById('soundcloudPlayer');
-    var audioHint = document.getElementById('audioHint');
-    var audioPlayBtn = document.getElementById('audioPlayBtn');
-    var homeAudio = document.querySelector('.home-audio');
-    var isTouchDevice = window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
 
     if (trackUrl && scIframe) {
-      var embedUrl = 'https://w.soundcloud.com/player/?' + [
+      var scParams = [
         'url=' + encodeURIComponent(trackUrl),
         'auto_play=true',
         'hide_related=true',
@@ -137,97 +133,50 @@
         'color=ffffff'
       ].join('&');
 
+      scIframe.src = 'https://w.soundcloud.com/player/?' + scParams;
+
       var scWidget = null;
-      var scReady = false;
-      var iframeLoaded = false;
-      var audioStarted = false;
+      var hasStarted = false;
 
-      function hideAudioHint() {
-        if (audioHint) audioHint.classList.add('is-hidden');
+      function startMusic() {
+        if (!scWidget || hasStarted) return;
+        scWidget.play();
+        scWidget.isPaused(function (paused) {
+          if (!paused) hasStarted = true;
+        });
       }
 
-      function markPlaying() {
-        audioStarted = true;
-        hideAudioHint();
-        if (homeAudio) homeAudio.classList.add('is-playing');
-        if (audioPlayBtn) {
-          audioPlayBtn.classList.remove('is-loading');
-          audioPlayBtn.setAttribute('aria-label', 'Music playing');
+      function bindFirstInteraction() {
+        var events = ['click', 'touchstart', 'keydown'];
+        function onInteract() {
+          startMusic();
+          events.forEach(function (name) {
+            document.removeEventListener(name, onInteract);
+          });
         }
+        events.forEach(function (name) {
+          document.addEventListener(name, onInteract);
+        });
       }
 
-      function initSoundCloudWidget() {
-        if (typeof SC === 'undefined') {
-          setTimeout(initSoundCloudWidget, 100);
-          return;
-        }
-
+      var scScript = document.createElement('script');
+      scScript.src = 'https://w.soundcloud.com/player/api.js';
+      scScript.onload = function () {
         scWidget = SC.Widget(scIframe);
-        scReady = false;
 
         scWidget.bind(SC.Widget.Events.READY, function () {
-          scReady = true;
-          if (!isTouchDevice) {
-            scWidget.play();
-          }
-          scWidget.isPaused(function (paused) {
-            if (!paused) markPlaying();
-          });
+          startMusic();
+          setTimeout(startMusic, 500);
+          setTimeout(startMusic, 1500);
         });
 
-        scWidget.bind(SC.Widget.Events.PLAY, markPlaying);
-
-        scWidget.bind(SC.Widget.Events.PAUSE, function () {
-          if (homeAudio) homeAudio.classList.remove('is-playing');
-          if (audioPlayBtn) audioPlayBtn.setAttribute('aria-label', 'Play music');
-          audioStarted = false;
+        scWidget.bind(SC.Widget.Events.PLAY, function () {
+          hasStarted = true;
         });
-      }
 
-      function loadAndPlay() {
-        if (audioStarted) return;
-        if (audioPlayBtn) audioPlayBtn.classList.add('is-loading');
-
-        if (!iframeLoaded) {
-          iframeLoaded = true;
-          scIframe.src = embedUrl;
-          initSoundCloudWidget();
-          return;
-        }
-
-        if (scWidget && scReady) {
-          scWidget.play();
-        }
-      }
-
-      var lastPlayTap = 0;
-      function onPlayGesture(e) {
-        var now = Date.now();
-        if (now - lastPlayTap < 400) return;
-        lastPlayTap = now;
-        if (e.type === 'touchstart') e.preventDefault();
-        loadAndPlay();
-      }
-
-      if (isTouchDevice) {
-        if (audioPlayBtn) {
-          audioPlayBtn.addEventListener('touchstart', onPlayGesture, { passive: false });
-          audioPlayBtn.addEventListener('click', function (e) {
-            e.preventDefault();
-            loadAndPlay();
-          });
-        }
-        if (canvas) {
-          canvas.addEventListener('touchstart', onPlayGesture, { passive: false });
-          canvas.addEventListener('click', loadAndPlay);
-        }
-      } else {
-        iframeLoaded = true;
-        scIframe.src = embedUrl;
-        initSoundCloudWidget();
-        if (audioPlayBtn) audioPlayBtn.hidden = true;
-        hideAudioHint();
-      }
+        bindFirstInteraction();
+      };
+      document.head.appendChild(scScript);
     }
   }
 
