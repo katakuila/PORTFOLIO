@@ -29,8 +29,13 @@
   </header>
 
   <main class="page-content home-hero">
-    <canvas id="radialCanvas" width="420" height="420" role="img" aria-label="Audio visualizer"></canvas>
-    <p class="audio-hint" id="audioHint" hidden>Tap to listen</p>
+    <div class="home-audio">
+      <canvas id="radialCanvas" width="420" height="420" role="img" aria-label="Audio visualizer"></canvas>
+      <button type="button" class="audio-play-btn" id="audioPlayBtn" aria-label="Play music">
+        <svg width="22" height="24" viewBox="0 0 18 20" fill="none" aria-hidden="true"><path d="M2 2L16 10L2 18V2Z" fill="currentColor"/></svg>
+      </button>
+    </div>
+    <p class="audio-hint" id="audioHint">Tap play to listen</p>
   </main>
 
   <div class="soundcloud-hidden" id="soundcloudBar" data-track="https://soundcloud.com/trommelmusic/premiere-a1-toke-pero-ppr004">

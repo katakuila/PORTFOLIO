@@ -267,17 +267,59 @@
     border: none;
   }
 
+  .home-audio {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .audio-play-btn {
+    display: none;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.35);
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: rgba(255, 255, 255, 0.95);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, opacity 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .audio-play-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.55);
+    transform: scale(1.06);
+  }
+
+  .audio-play-btn.is-loading {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .home-audio.is-playing .audio-play-btn {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .audio-hint {
     font-family: Georgia, serif;
     font-size: 0.68rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.4);
-    margin: 0;
+    margin: 1rem 0 0;
     animation: audio-hint-pulse 2s ease-in-out infinite;
   }
 
-  .audio-hint[hidden] {
+  .home-audio.is-playing + .audio-hint,
+  .audio-hint.is-hidden {
     display: none;
   }
 
@@ -286,9 +328,20 @@
     50% { opacity: 0.75; }
   }
 
-  .home-hero #radialCanvas {
-    cursor: pointer;
-    touch-action: manipulation;
+  @media (pointer: coarse), (max-width: 900px) {
+    .audio-play-btn {
+      display: flex;
+    }
+
+    .audio-hint {
+      display: block;
+    }
+  }
+
+  @media (min-width: 901px) and (pointer: fine) {
+    .audio-hint {
+      display: none;
+    }
   }
 
   .page-section {

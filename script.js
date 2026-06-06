@@ -114,16 +114,18 @@
     draw();
   }
 
-  // SoundCloud player (home page only, hidden — audio only)
+  // SoundCloud player (home page only)
   var scBar = document.getElementById('soundcloudBar');
   if (scBar) {
     var trackUrl = scBar.getAttribute('data-track');
     var scIframe = document.getElementById('soundcloudPlayer');
     var audioHint = document.getElementById('audioHint');
+    var audioPlayBtn = document.getElementById('audioPlayBtn');
+    var homeAudio = document.querySelector('.home-audio');
     var isTouchDevice = window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
 
     if (trackUrl && scIframe) {
-      var scParams = [
+      var embedUrl = 'https://w.soundcloud.com/player/?' + [
         'url=' + encodeURIComponent(trackUrl),
         'auto_play=true',
         'hide_related=true',
@@ -135,89 +137,96 @@
         'color=ffffff'
       ].join('&');
 
-      scIframe.src = 'https://w.soundcloud.com/player/?' + scParams;
-
       var scWidget = null;
       var scReady = false;
+      var iframeLoaded = false;
       var audioStarted = false;
-      var hintTimer = null;
 
       function hideAudioHint() {
-        if (audioHint) audioHint.hidden = true;
-      }
-
-      function showAudioHint() {
-        if (audioHint && isTouchDevice && !audioStarted) {
-          audioHint.hidden = false;
-        }
+        if (audioHint) audioHint.classList.add('is-hidden');
       }
 
       function markPlaying() {
         audioStarted = true;
         hideAudioHint();
-        if (hintTimer) clearTimeout(hintTimer);
-      }
-
-      function tryPlayMusic() {
-        if (!scWidget || !scReady || audioStarted) return;
-        scWidget.play();
-      }
-
-      function onAudioGesture() {
-        if (audioStarted) return;
-        tryPlayMusic();
-        if (!scWidget || !scReady) return;
-
-        scWidget.isPaused(function (paused) {
-          if (!paused) markPlaying();
-        });
-      }
-
-      function bindAudioGestures() {
-        var opts = { capture: true, passive: true };
-        ['touchstart', 'touchend', 'click'].forEach(function (name) {
-          document.addEventListener(name, onAudioGesture, opts);
-        });
-        if (canvas) {
-          canvas.addEventListener('touchstart', onAudioGesture, opts);
-          canvas.addEventListener('click', onAudioGesture, opts);
+        if (homeAudio) homeAudio.classList.add('is-playing');
+        if (audioPlayBtn) {
+          audioPlayBtn.classList.remove('is-loading');
+          audioPlayBtn.setAttribute('aria-label', 'Music playing');
         }
       }
 
       function initSoundCloudWidget() {
-        if (typeof SC === 'undefined') return;
+        if (typeof SC === 'undefined') {
+          setTimeout(initSoundCloudWidget, 100);
+          return;
+        }
+
         scWidget = SC.Widget(scIframe);
         scReady = false;
 
         scWidget.bind(SC.Widget.Events.READY, function () {
           scReady = true;
-          tryPlayMusic();
-
+          if (!isTouchDevice) {
+            scWidget.play();
+          }
           scWidget.isPaused(function (paused) {
-            if (paused) {
-              hintTimer = setTimeout(showAudioHint, 1200);
-            } else {
-              markPlaying();
-            }
+            if (!paused) markPlaying();
           });
         });
 
         scWidget.bind(SC.Widget.Events.PLAY, markPlaying);
 
-        scWidget.bind(SC.Widget.Events.ERROR, function () {
-          showAudioHint();
+        scWidget.bind(SC.Widget.Events.PAUSE, function () {
+          if (homeAudio) homeAudio.classList.remove('is-playing');
+          if (audioPlayBtn) audioPlayBtn.setAttribute('aria-label', 'Play music');
+          audioStarted = false;
         });
       }
 
-      bindAudioGestures();
+      function loadAndPlay() {
+        if (audioStarted) return;
+        if (audioPlayBtn) audioPlayBtn.classList.add('is-loading');
 
-      if (typeof SC !== 'undefined') {
-        initSoundCloudWidget();
+        if (!iframeLoaded) {
+          iframeLoaded = true;
+          scIframe.src = embedUrl;
+          initSoundCloudWidget();
+          return;
+        }
+
+        if (scWidget && scReady) {
+          scWidget.play();
+        }
+      }
+
+      var lastPlayTap = 0;
+      function onPlayGesture(e) {
+        var now = Date.now();
+        if (now - lastPlayTap < 400) return;
+        lastPlayTap = now;
+        if (e.type === 'touchstart') e.preventDefault();
+        loadAndPlay();
+      }
+
+      if (isTouchDevice) {
+        if (audioPlayBtn) {
+          audioPlayBtn.addEventListener('touchstart', onPlayGesture, { passive: false });
+          audioPlayBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            loadAndPlay();
+          });
+        }
+        if (canvas) {
+          canvas.addEventListener('touchstart', onPlayGesture, { passive: false });
+          canvas.addEventListener('click', loadAndPlay);
+        }
       } else {
-        var scScript = document.createElement('script');
-        scScript.src = 'https://w.soundcloud.com/player/api.js';
-        scScript.onload = initSoundCloudWidget;
-        document.head.appendChild(scScript);
+        iframeLoaded = true;
+        scIframe.src = embedUrl;
+        initSoundCloudWidget();
+        if (audioPlayBtn) audioPlayBtn.hidden = true;
+        hideAudioHint();
       }
     }
   }
