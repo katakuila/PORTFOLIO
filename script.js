@@ -118,11 +118,28 @@
   var scrollCue = document.getElementById('scrollCue');
   var aboutSection = document.getElementById('about');
 
+  function updateScrollCue() {
+    if (!scrollCue || !aboutSection) return;
+
+    var scrollY = window.scrollY || document.documentElement.scrollTop;
+    var aboutVisible = aboutSection.classList.contains('is-visible');
+
+    if (aboutVisible || scrollY > window.innerHeight * 0.4) {
+      scrollCue.classList.remove('is-shown');
+    } else if (scrollY > 12) {
+      scrollCue.classList.add('is-shown');
+    } else {
+      scrollCue.classList.remove('is-shown');
+    }
+  }
+
   if (scrollCue && aboutSection) {
     scrollCue.addEventListener('click', function () {
-      aboutSection.classList.add('is-visible');
       aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+
+    window.addEventListener('scroll', updateScrollCue, { passive: true });
+    updateScrollCue();
   }
 
   if (aboutSection) {
@@ -132,12 +149,14 @@
           if (entry.isIntersecting) {
             entry.target.classList.add('is-visible');
             aboutObserver.unobserve(entry.target);
+            updateScrollCue();
           }
         });
-      }, { threshold: 0.05, rootMargin: '0px 0px -5% 0px' });
+      }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
       aboutObserver.observe(aboutSection);
     } else {
       aboutSection.classList.add('is-visible');
+      updateScrollCue();
     }
   }
 

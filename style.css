@@ -247,8 +247,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 100svh;
+    height: 100svh;
     padding-top: 5rem;
+    overflow: hidden;
   }
 
   .scroll-cue {
@@ -273,7 +275,17 @@
     text-transform: uppercase;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
-    transition: color 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.5s ease, visibility 0s linear 0.5s, color 0.3s ease;
+  }
+
+  .scroll-cue.is-shown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity 0.5s ease, visibility 0s linear 0s, color 0.3s ease;
   }
 
   .scroll-cue:hover {
@@ -290,14 +302,21 @@
   }
 
   .about-reveal {
+    min-height: 0;
     opacity: 0;
+    visibility: hidden;
     transform: translateY(40px);
-    transition: opacity 0.9s ease, transform 0.9s ease;
+    pointer-events: none;
+    transition: opacity 0.9s ease, transform 0.9s ease, visibility 0s linear 0.9s;
   }
 
   .about-reveal.is-visible {
+    min-height: 100vh;
     opacity: 1;
+    visibility: visible;
     transform: translateY(0);
+    pointer-events: auto;
+    transition: opacity 0.9s ease, transform 0.9s ease, visibility 0s linear 0s;
   }
 
   .soundcloud-hidden {
@@ -753,6 +772,7 @@
 
     .home-hero {
       min-height: 100svh;
+      height: 100svh;
       padding-bottom: 5rem;
     }
 
