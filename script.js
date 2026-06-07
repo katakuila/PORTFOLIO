@@ -114,6 +114,32 @@
     draw();
   }
 
+  // Scroll cue + About reveal (home page only)
+  var scrollCue = document.getElementById('scrollCue');
+  var aboutSection = document.getElementById('about');
+
+  if (scrollCue && aboutSection) {
+    scrollCue.addEventListener('click', function () {
+      aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  if (aboutSection) {
+    if ('IntersectionObserver' in window) {
+      var aboutObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            aboutObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      aboutObserver.observe(aboutSection);
+    } else {
+      aboutSection.classList.add('is-visible');
+    }
+  }
+
   // SoundCloud player (home page only, hidden — audio only)
   var scBar = document.getElementById('soundcloudBar');
   if (scBar) {

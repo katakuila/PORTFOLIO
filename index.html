@@ -12,7 +12,7 @@
   <div class="bg-layer bg-overlay"></div>
 
   <header class="site-header">
-    <a href="index.html" class="site-logo">Toke</a>
+    <a href="index.html" class="site-logo">Toke Nikolaishvili</a>
     <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
       <span class="nav-toggle__bar" aria-hidden="true"></span>
       <span class="nav-toggle__bar" aria-hidden="true"></span>
@@ -20,7 +20,6 @@
     </button>
     <nav class="site-nav" id="site-nav" aria-label="Main navigation">
       <a href="index.html">Home</a>
-      <a href="pages/about.html">About</a>
       <a href="pages/advertising.html">Advertising</a>
       <a href="pages/games.html">Games</a>
       <a href="pages/artist.html">Artist</a>
@@ -28,9 +27,126 @@
     </nav>
   </header>
 
-  <main class="page-content home-hero">
+  <main class="page-content home-hero" id="hero">
     <canvas id="radialCanvas" width="420" height="420"></canvas>
+    <button type="button" class="scroll-cue" id="scrollCue" aria-label="Scroll to about">
+      <span class="scroll-cue__text">About</span>
+      <svg class="scroll-cue__arrow" width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true"><path d="M1 1L9 8L17 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
   </main>
+
+  <section class="page-content about-reveal" id="about">
+    <div class="page-section page-section--centered">
+      <div class="page-inner">
+       <!-- <p class="page-label">About</p> -->
+
+        <h1 class="page-title">Tornike “Toke” Nikolaishvili</h1>
+        <p class="page-subtitle">Sound Designer &bull; Music Producer &bull; Audio Engineer</p>
+
+        <div class="bio-text">
+          <p>Born in Tbilisi, Georgia and currently based in Vancouver, Canada, Tornike “Toke” Nikolaishvili is a sound designer, music producer, and audio engineer with more than 20 years of experience in music production, sound design, and audio engineering.</p>
+          <p>Specializing in game audio, interactive sound design, and electronic music production, Toke creates immersive sound experiences that combine technical precision with emotional impact. His work includes sound effects, adaptive music loops, UI audio, ambient textures, transition effects, and slot-style game audio systems.</p>
+          <p>With advanced expertise in Ableton Live, he has collaborated on freelance game audio projects with developers, artists, and designers to deliver polished, production-ready audio assets optimized for performance and gameplay integration.</p>
+          <p>From 2019 to 2023, Toke worked as an Ableton Live mentor at 303Hz Academy in Tbilisi, teaching music production, sound design, workflow development, and creative audio techniques to emerging producers and artists.</p>
+          <p>Alongside his work in game audio and music production, Toke is also one of the founders and CEOs of Swing Festival in Poti, Georgia &mdash; a festival centered around electronic music, underground culture, sound, and immersive artistic experiences.</p>
+          <p>His creative approach blends experimental sound design, technical audio engineering, rhythm, atmosphere, and a deep understanding of frequencies and interactive environments.</p>
+        </div>
+
+        <div class="section-divider"></div>
+        <p class="page-label">Skills</p>
+
+        <div class="skills-grid">
+          <div>
+            <p class="skills-col-label">Sound Design</p>
+            <ul class="skills-list">
+              <li>Game Audio Design</li>
+              <li>Interactive Sound Systems</li>
+              <li>Slot Game Audio</li>
+              <li>Adaptive Music Loops</li>
+              <li>Sound Effects &amp; Foley</li>
+              <li>Ambient Textures</li>
+            </ul>
+          </div>
+          <div>
+            <p class="skills-col-label">Production</p>
+            <ul class="skills-list">
+              <li>Electronic Music Production</li>
+              <li>Mixing &amp; Mastering</li>
+              <li>UI / UX Audio</li>
+              <li>Audio Optimization</li>
+              <li>Transition Effects</li>
+            </ul>
+          </div>
+          <div>
+            <p class="skills-col-label">Software</p>
+            <ul class="skills-list">
+              <li>Ableton Live <span class="muted">(Expert)</span></li>
+              <li>FL Studio</li>
+              <li>Professional VST &amp; Plugins</li>
+            </ul>
+            <p class="skills-col-label skills-col-label--spaced">Experience</p>
+            <ul class="skills-list">
+              <li>20+ Years in Audio</li>
+              <li>Ableton Mentor 2019&ndash;2023</li>
+              <li>Swing Festival Co-Founder</li>
+            </ul>
+            <p class="skills-col-label skills-col-label--spaced">Availability</p>
+            <p class="availability-text">Available for Remote, Freelance,<br>Contract, and Full-Time Opportunities.</p>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+        <p class="page-label">Creative Audio Toolkit</p>
+
+        <div class="toolkit-grid">
+          <div class="logo-card">
+            <svg width="38" height="28" viewBox="0 0 38 28" fill="none"><rect x="0" y="6" width="4" height="16" rx="1" fill="white" opacity="0.9"/><rect x="6" y="2" width="4" height="24" rx="1" fill="white" opacity="0.9"/><rect x="12" y="0" width="4" height="28" rx="1" fill="white" opacity="0.9"/><rect x="18" y="4" width="4" height="20" rx="1" fill="white" opacity="0.9"/><rect x="24" y="8" width="4" height="12" rx="1" fill="white" opacity="0.9"/><rect x="30" y="10" width="4" height="8" rx="1" fill="white" opacity="0.9"/></svg>
+            <span>Ableton</span>
+          </div>
+          <div class="logo-card">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="10" r="9" fill="#FF6B00" opacity="0.9"/><circle cx="16" cy="9" r="5" fill="#FFB347"/><circle cx="14" cy="7" r="2" fill="#FFD700"/><path d="M8 19 Q16 32 24 19" stroke="#FF6B00" stroke-width="2" fill="none" opacity="0.7"/></svg>
+            <span>FL Studio</span>
+          </div>
+          <div class="logo-card">
+            <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><rect x="1" y="8" width="2" height="4" rx="1" fill="white" opacity="0.8"/><rect x="5" y="4" width="2" height="12" rx="1" fill="white" opacity="0.8"/><rect x="9" y="0" width="2" height="20" rx="1" fill="white" opacity="0.8"/><rect x="13" y="6" width="2" height="8" rx="1" fill="white" opacity="0.8"/><rect x="17" y="2" width="2" height="16" rx="1" fill="white" opacity="0.8"/><rect x="21" y="8" width="2" height="4" rx="1" fill="white" opacity="0.8"/><circle cx="28" cy="10" r="3" fill="none" stroke="white" stroke-width="1.5" opacity="0.8"/><circle cx="28" cy="10" r="1" fill="white" opacity="0.8"/></svg>
+            <span>FabFilter</span>
+          </div>
+          <div class="logo-card">
+            <svg width="36" height="24" viewBox="0 0 36 24" fill="none"><path d="M2 20 L8 4 L11 14 L14 8 L17 16 L20 4 L23 12 L26 8 L29 16 L34 4" stroke="#4A9EFF" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>iZotope RX</span>
+          </div>
+          <div class="logo-card">
+            <svg width="34" height="24" viewBox="0 0 34 24" fill="none"><rect x="2" y="10" width="30" height="4" rx="1" fill="white" opacity="0.15"/><path d="M2 12 Q8 2 17 12 Q26 22 32 12" stroke="white" stroke-width="2" fill="none" opacity="0.9"/><circle cx="17" cy="12" r="3" fill="#7B4FFF" opacity="0.9"/></svg>
+            <span>Serum</span>
+          </div>
+          <div class="logo-card">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none"><circle cx="15" cy="15" r="13" stroke="white" stroke-width="1.5" opacity="0.8"/><path d="M9 15 L13 10 L17 15 L21 10" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.9"/></svg>
+            <span>Kontakt</span>
+          </div>
+          <div class="logo-card">
+            <svg width="36" height="24" viewBox="0 0 36 24" fill="none"><path d="M4 18 L9 6 L14 18" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/><path d="M14 18 L19 6 L24 18" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/><line x1="6" y1="14" x2="12" y2="14" stroke="white" stroke-width="1.5" opacity="0.6"/><line x1="16" y1="14" x2="22" y2="14" stroke="white" stroke-width="1.5" opacity="0.6"/></svg>
+            <span>Waves</span>
+          </div>
+          <div class="logo-card">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13" fill="none" stroke="#4ABFFF" stroke-width="1.5" opacity="0.9"/><path d="M16 3 Q28 16 16 29 Q4 16 16 3" fill="#4ABFFF" opacity="0.25"/><circle cx="16" cy="16" r="5" fill="none" stroke="#4ABFFF" stroke-width="1.2" opacity="0.8"/></svg>
+            <span>Ozone</span>
+          </div>
+          <div class="logo-card">
+            <svg width="36" height="20" viewBox="0 0 36 20" fill="none"><text x="2" y="15" font-family="Georgia,serif" font-size="14" fill="white" opacity="0.85" font-style="italic">Valhalla</text></svg>
+            <span>Valhalla</span>
+          </div>
+          <div class="logo-card">
+            <svg width="40" height="22" viewBox="0 0 40 22" fill="none"><text x="1" y="16" font-family="Arial,sans-serif" font-size="13" font-weight="900" fill="#D4A84B" opacity="0.9" letter-spacing="1">RC-20</text></svg>
+            <span>RC-20</span>
+          </div>
+          <div class="logo-card">
+            <svg width="36" height="24" viewBox="0 0 36 24" fill="none"><text x="1" y="17" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="white" opacity="0.85" letter-spacing="1">fmod</text></svg>
+            <span>FMOD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <div class="soundcloud-hidden" id="soundcloudBar" data-track="https://soundcloud.com/trommelmusic/premiere-a1-toke-pero-ppr004">
     <iframe
