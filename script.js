@@ -120,6 +120,7 @@
 
   if (scrollCue && aboutSection) {
     scrollCue.addEventListener('click', function () {
+      aboutSection.classList.add('is-visible');
       aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   }
@@ -133,7 +134,7 @@
             aboutObserver.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.12 });
+      }, { threshold: 0.05, rootMargin: '0px 0px -5% 0px' });
       aboutObserver.observe(aboutSection);
     } else {
       aboutSection.classList.add('is-visible');

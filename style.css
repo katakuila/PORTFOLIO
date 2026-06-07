@@ -261,14 +261,18 @@
     align-items: center;
     gap: 0.6rem;
     padding: 0.5rem 1rem;
+    margin: 0;
     border: none;
     background: transparent;
-    color: rgba(255, 255, 255, 0.5);
+    -webkit-appearance: none;
+    appearance: none;
+    color: rgba(255, 255, 255, 0.55);
     font-family: Georgia, serif;
     font-size: 0.62rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
     transition: color 0.3s ease;
   }
 
@@ -577,7 +581,7 @@
   .artist-bio__text {
     font-size: 0.95rem;
     line-height: 1.85;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.78);
     margin: 0 0 1.1rem;
     max-width: 80ch;
   }
@@ -748,8 +752,13 @@
 
     .artist-intro {
       flex-direction: column;
+      align-items: stretch;
       gap: 2rem;
       margin-bottom: 3rem;
+    }
+
+    .artist-bio {
+      padding-top: 0;
     }
 
     .artist-bio__name {
@@ -757,8 +766,18 @@
     }
 
     .artist-cover {
-      max-width: 100%;
+      width: 100%;
+      max-width: none;
       margin-bottom: 0;
+    }
+
+    .home-hero {
+      min-height: 100svh;
+      padding-bottom: 5rem;
+    }
+
+    .scroll-cue {
+      bottom: 1.75rem;
     }
 
     #radialCanvas {
