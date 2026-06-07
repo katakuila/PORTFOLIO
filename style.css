@@ -550,6 +550,7 @@
   /* Artist page */
   .artist-intro {
     display: flex;
+    flex-direction: row;
     align-items: flex-start;
     gap: 3.5rem;
     margin: 0 0 4.5rem;
@@ -588,9 +589,9 @@
 
   .artist-cover {
     display: block;
-    width: 100%;
+    flex: 0 0 250px;
+    width: 250px;
     max-width: 250px;
-    flex-shrink: 0;
     margin: 0;
     border-radius: 12px;
     overflow: hidden;
@@ -750,6 +751,22 @@
       gap: 1rem;
     }
 
+    .home-hero {
+      min-height: 100svh;
+      padding-bottom: 5rem;
+    }
+
+    .scroll-cue {
+      bottom: 1.75rem;
+    }
+
+    #radialCanvas {
+      width: min(420px, 85vw);
+      height: min(420px, 85vw);
+    }
+  }
+
+  @media (max-width: 768px) {
     .artist-intro {
       flex-direction: column;
       align-items: stretch;
@@ -766,22 +783,8 @@
     }
 
     .artist-cover {
+      flex: none;
       width: 100%;
       max-width: none;
-      margin-bottom: 0;
-    }
-
-    .home-hero {
-      min-height: 100svh;
-      padding-bottom: 5rem;
-    }
-
-    .scroll-cue {
-      bottom: 1.75rem;
-    }
-
-    #radialCanvas {
-      width: min(420px, 85vw);
-      height: min(420px, 85vw);
     }
   }
