@@ -358,7 +358,7 @@
 
   .page-label {
     font-family: Georgia, serif;
-    font-size: 0.65rem;
+    font-size: 1.65rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.35);
@@ -368,6 +368,15 @@
   .page-title {
     font-family: Georgia, serif;
     font-size: 1.6rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: 0.06em;
+    margin: 0 0 0.4rem;
+  }
+
+  .page-title-release {
+    font-family: Georgia, serif;
+    font-size: 0.85rem;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.95);
     letter-spacing: 0.06em;
@@ -582,7 +591,7 @@
 
   .artist-bio__eyebrow {
     font-family: Georgia, serif;
-    font-size: 0.65rem;
+    font-size: 1.65rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.35);
@@ -626,7 +635,7 @@
 
   .release-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
   }
 
