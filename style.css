@@ -247,13 +247,14 @@
 
   .page-reveal-item {
     opacity: 0;
-    animation: section-reveal 0.8s ease-out forwards;
+    transform: translateY(36px);
+    animation: section-reveal 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
   @keyframes section-reveal {
     from {
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(36px);
     }
     to {
       opacity: 1;

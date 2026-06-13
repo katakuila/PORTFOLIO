@@ -40,34 +40,43 @@
   function initPageReveal() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    var step = 0.13;
-    var delay = 0.06;
+    var step = 0.22;
+    var delay = 0.15;
     var items = [];
+    var seen = new Set();
 
     function shouldReveal(el) {
-      return el && !el.classList.contains('scroll-cue');
+      return el &&
+        !el.classList.contains('scroll-cue') &&
+        !el.classList.contains('about-reveal');
     }
 
-    var header = document.querySelector('.site-header');
-    if (shouldReveal(header)) items.push(header);
+    function add(el) {
+      if (!shouldReveal(el) || seen.has(el)) return;
+      seen.add(el);
+      items.push(el);
+    }
+
+    add(document.querySelector('.site-header'));
 
     var main = document.querySelector('.page-content:not(.about-reveal)');
     if (main) {
-      var inner = main.querySelector('.page-inner');
-      var section = main.querySelector('.page-section');
-      var blockItems = [];
+      var revealSelector = [
+        '.page-label',
+        '.page-title',
+        '.page-title--section',
+        '.page-title-release',
+        '.contact-intro',
+        '.artist-intro',
+        '.contact-block__label',
+        '.social-card',
+        '.contact-card',
+        '.release-card',
+        '.vcard',
+        '.page-placeholder-text'
+      ].join(', ');
 
-      if (inner && inner.children.length > 1) {
-        blockItems = Array.prototype.slice.call(inner.children);
-      } else if (section && section.children.length) {
-        blockItems = Array.prototype.slice.call(section.children);
-      } else {
-        blockItems = Array.prototype.slice.call(main.children);
-      }
-
-      blockItems.forEach(function (el) {
-        if (shouldReveal(el)) items.push(el);
-      });
+      main.querySelectorAll(revealSelector).forEach(add);
     }
 
     items.forEach(function (el) {
