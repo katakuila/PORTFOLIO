@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <circle cx="32" cy="32" r="24" fill="url(#ozone-grad)"/>
+  <ellipse cx="32" cy="32" rx="24" ry="8" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" fill="none"/>
+  <ellipse cx="32" cy="32" rx="8" ry="24" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" fill="none"/>
+  <defs>
+    <radialGradient id="ozone-grad" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#FFD54F"/>
+      <stop offset="55%" stop-color="#FF8F00"/>
+      <stop offset="100%" stop-color="#E65100"/>
+    </radialGradient>
+  </defs>
+</svg>

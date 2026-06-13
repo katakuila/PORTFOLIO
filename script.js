@@ -73,6 +73,7 @@
         '.contact-card',
         '.release-card',
         '.vcard',
+        '.logo-card',
         '.page-placeholder-text'
       ].join(', ');
 

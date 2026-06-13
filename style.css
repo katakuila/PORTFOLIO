@@ -535,6 +535,23 @@
     transition: all 0.3s;
   }
 
+  .logo-card__img {
+    display: block;
+    height: 34px;
+    width: auto;
+    max-width: 88%;
+    object-fit: contain;
+  }
+
+  .logo-card__img--light {
+    filter: brightness(0) invert(1);
+  }
+
+  .logo-card__img--wide {
+    max-width: 96%;
+    height: 28px;
+  }
+
   .logo-card:hover {
     border-color: rgba(255, 255, 255, 0.18);
     background: rgba(255, 255, 255, 0.05);
