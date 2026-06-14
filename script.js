@@ -538,7 +538,10 @@
       'color=ffffff'
     ].join('&');
 
-    scIframe.src = 'https://w.soundcloud.com/player/?' + scParams;
+    var embedUrl = 'https://w.soundcloud.com/player/?' + scParams;
+    if (!scIframe.src || scIframe.src.indexOf('soundcloud.com/player') === -1) {
+      scIframe.src = embedUrl;
+    }
 
     var player = {
       ready: false,
@@ -674,8 +677,12 @@
       }
 
       tryResume();
-      window.setTimeout(tryResume, 400);
-      window.setTimeout(tryResume, 1200);
+      if (savedPos > 500) {
+        window.setTimeout(tryResume, 200);
+        window.setTimeout(tryResume, 700);
+      } else if (shouldPlay && !player.isMuted) {
+        window.setTimeout(tryResume, 120);
+      }
     }
 
     function toggleMute() {
@@ -767,9 +774,7 @@
 
     bindToggleClick();
 
-    var scScript = document.createElement('script');
-    scScript.src = 'https://w.soundcloud.com/player/api.js';
-    scScript.onload = function () {
+    function bootWidget() {
       player.scWidget = SC.Widget(scIframe);
 
       player.scWidget.bind(SC.Widget.Events.READY, function () {
@@ -778,6 +783,10 @@
         showMusicToggle();
         if (player.isMuted) {
           player.scWidget.setVolume(0);
+        } else {
+          player.scWidget.play();
+          player.hasStarted = true;
+          player.isPlaying = true;
         }
         updateMusicToggleUi();
         resumeFromSavedState();
@@ -823,15 +832,33 @@
         player.lastPositionMs = data.currentPosition;
         player.lastProgressAt = performance.now();
       });
-    };
-    document.head.appendChild(scScript);
+    }
+
+    function whenScApiReady(fn) {
+      if (window.SC && window.SC.Widget) {
+        fn();
+        return;
+      }
+      var pending = document.querySelector('script[data-sc-api="1"]');
+      if (pending) {
+        pending.addEventListener('load', fn, { once: true });
+        return;
+      }
+      var scScript = document.createElement('script');
+      scScript.src = 'https://w.soundcloud.com/player/api.js';
+      scScript.dataset.scApi = '1';
+      scScript.onload = fn;
+      document.head.appendChild(scScript);
+    }
+
+    whenScApiReady(bootWidget);
 
     player.saveTimer = window.setInterval(saveState, 2000);
     window.addEventListener('pagehide', saveState);
   }
 
+  initMusicPlayer();
   initNav();
   initPageTransitions();
-  initMusicPlayer();
   initCurrentPage();
 })();
