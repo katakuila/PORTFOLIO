@@ -1,6 +1,15 @@
 (function () {
   var pageRoot = document.getElementById('page-root');
   var isNavigating = false;
+  var navGraceUntil = 0;
+
+  function inNavigationGrace() {
+    return isNavigating || performance.now() < navGraceUntil;
+  }
+
+  function beginNavigationGrace(extraMs) {
+    navGraceUntil = performance.now() + (extraMs || 900);
+  }
 
   function getSiteRoot() {
     var path = window.location.pathname;
@@ -385,14 +394,49 @@
   function initCurrentPage() {
     destroyCurrentPage();
     initPageReveal();
-    initHomePage();
     initVideos();
     updateActiveNav();
+    if (document.getElementById('radialCanvas')) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(initHomePage);
+      });
+    }
+  }
+
+  function resumeMusicAfterNav() {
+    var player = window.__portfolioMusic;
+    if (!player || !player.scWidget || player.isMuted) return;
+    player.scWidget.isPaused(function (paused) {
+      if (paused && player.hasStarted) {
+        player.scWidget.play();
+        player.isPlaying = true;
+      }
+    });
+  }
+
+  function applyPageSwap(nextRoot, url, pushHistory, docTitle) {
+    destroyCurrentPage();
+    resolvePageUrls(nextRoot, url);
+    pageRoot.innerHTML = nextRoot.innerHTML;
+    document.title = docTitle || document.title;
+
+    if (pushHistory !== false) {
+      history.pushState({ pjax: true, url: url }, '', url);
+    }
+
+    window.scrollTo(0, 0);
+    document.documentElement.classList.remove('is-leaving');
+    initCurrentPage();
+    beginNavigationGrace(900);
+    resumeMusicAfterNav();
+    window.setTimeout(resumeMusicAfterNav, 120);
+    window.setTimeout(resumeMusicAfterNav, 350);
   }
 
   function navigateTo(url, pushHistory) {
     if (isNavigating) return;
     isNavigating = true;
+    beginNavigationGrace(2500);
 
     fetch(url, { credentials: 'same-origin' })
       .then(function (response) {
@@ -411,18 +455,11 @@
           window.__portfolioMusic.saveState();
         }
 
-        destroyCurrentPage();
-        resolvePageUrls(nextRoot, url);
-        pageRoot.innerHTML = nextRoot.innerHTML;
-        document.title = doc.title || document.title;
+        var docTitle = doc.title;
 
-        if (pushHistory !== false) {
-          history.pushState({ pjax: true, url: url }, '', url);
-        }
-
-        window.scrollTo(0, 0);
-        document.documentElement.classList.remove('is-leaving');
-        initCurrentPage();
+        requestAnimationFrame(function () {
+          applyPageSwap(nextRoot, url, pushHistory, docTitle);
+        });
       })
       .catch(function () {
         window.location.href = url;
@@ -724,6 +761,7 @@
     };
 
     player.saveState = saveState;
+    player.resumeIfNeeded = resumeMusicAfterNav;
 
     window.__portfolioMusic = player;
 
@@ -753,6 +791,14 @@
       });
 
       player.scWidget.bind(SC.Widget.Events.PAUSE, function () {
+        if (inNavigationGrace()) {
+          if (!player.isMuted) {
+            window.setTimeout(function () {
+              if (!player.isMuted && player.scWidget) player.scWidget.play();
+            }, 20);
+          }
+          return;
+        }
         player.isPlaying = false;
         resetBeatVars();
         saveState();
