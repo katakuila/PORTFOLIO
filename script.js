@@ -241,6 +241,21 @@
   var scBar = document.getElementById('soundcloudBar');
   if (scBar) {
     var trackUrl = scBar.getAttribute('data-track');
+
+    function normalizeSoundCloudUrl(url) {
+      try {
+        var parsed = new URL(url.trim());
+        if (parsed.hostname.indexOf('soundcloud.com') === -1) return url.trim();
+        parsed.search = '';
+        parsed.hash = '';
+        parsed.pathname = parsed.pathname.replace(/\/s-[A-Za-z0-9]+$/i, '');
+        return parsed.toString().replace(/\/$/, '');
+      } catch (e) {
+        return url.trim();
+      }
+    }
+
+    trackUrl = normalizeSoundCloudUrl(trackUrl);
     var scIframe = document.getElementById('soundcloudPlayer');
 
     if (trackUrl && scIframe) {
@@ -260,6 +275,136 @@
 
       var scWidget = null;
       var hasStarted = false;
+      var isMuted = sessionStorage.getItem('musicMuted') === '1';
+      var savedVolume = 100;
+      var musicToggle = document.getElementById('musicToggle');
+      var musicToggleRail = document.getElementById('musicToggleRail');
+      var waveBack = document.querySelector('.music-toggle__wave-path--back');
+      var waveFront = document.querySelector('.music-toggle__wave-path--front');
+      var trackBpm = parseFloat(scBar.getAttribute('data-bpm')) || 124;
+      var beatOffset = parseFloat(scBar.getAttribute('data-beat-offset')) || 0;
+      var lastPositionMs = 0;
+      var lastProgressAt = 0;
+      var beatLoopId = null;
+      var isPlaying = false;
+
+      function wavePath(amplitude, invert) {
+        var mid = 7;
+        var sign = invert ? 1 : -1;
+        var a = amplitude * sign;
+        return 'M0 7 C2 ' + (mid + a * 0.42) + ' 4 ' + (mid - a) + ' 6 7 S10 ' + (mid + a * 0.42) + ' 12 7 S16 ' + (mid - a) + ' 18 7 S22 ' + (mid + a * 0.42) + ' 24 7';
+      }
+
+      function beatEnvelope(positionMs) {
+        if (!trackBpm) return 0;
+        var beatMs = 60000 / trackBpm;
+        var pos = positionMs - beatOffset;
+        while (pos < 0) pos += beatMs;
+        var phase = (pos % beatMs) / beatMs;
+        var kick = Math.exp(-phase * 14);
+        var halfBeat = (pos + beatMs * 0.5) % beatMs / beatMs;
+        var offbeat = Math.exp(-halfBeat * 11) * 0.28;
+        return Math.min(1, kick + offbeat);
+      }
+
+      function breatheAmount(now) {
+        return 0.5 + 0.5 * Math.sin(now * 0.0028);
+      }
+
+      function setBeatVars(env, now) {
+        if (!musicToggle) return;
+        var breathe = breatheAmount(now);
+        var y = (0.68 + env * 0.72) * (0.86 + breathe * 0.18);
+        var x = (1 + env * 0.1) * (0.94 + breathe * 0.08);
+        var opacity = (0.52 + env * 0.48) * (0.82 + breathe * 0.22);
+        var glow = env * 0.85 + breathe * 0.24;
+        musicToggle.style.setProperty('--beat-y', y.toFixed(3));
+        musicToggle.style.setProperty('--beat-x', x.toFixed(3));
+        musicToggle.style.setProperty('--beat-opacity', Math.min(1, opacity).toFixed(3));
+        musicToggle.style.setProperty('--beat-glow', Math.min(1, glow).toFixed(3));
+        if (waveBack && waveFront) {
+          var amp = (1.1 + env * 3.8) * (0.9 + breathe * 0.14);
+          waveBack.setAttribute('d', wavePath(amp, false));
+          waveFront.setAttribute('d', wavePath(amp * 0.88, true));
+        }
+      }
+
+      function resetBeatVars() {
+        setBeatVars(0, performance.now());
+      }
+
+      function updateBeatViz(positionMs, now) {
+        if (isMuted || !isPlaying) {
+          resetBeatVars();
+          return;
+        }
+        setBeatVars(beatEnvelope(positionMs), now);
+      }
+
+      function beatLoop(now) {
+        if (isPlaying && !isMuted) {
+          var pos = lastPositionMs + (now - lastProgressAt);
+          updateBeatViz(pos, now);
+        } else if (!isMuted && musicToggle && musicToggle.classList.contains('is-beat-sync')) {
+          setBeatVars(0, now);
+        }
+        beatLoopId = requestAnimationFrame(beatLoop);
+      }
+
+      function startBeatLoop() {
+        if (beatLoopId) return;
+        beatLoopId = requestAnimationFrame(beatLoop);
+      }
+
+      function initTrackBpm() {
+        if (!scWidget) return;
+        scWidget.getCurrentSound(function (sound) {
+          if (sound && sound.bpm) {
+            trackBpm = sound.bpm;
+          } else if (!parseFloat(scBar.getAttribute('data-bpm'))) {
+            trackBpm = 124;
+          }
+        });
+      }
+
+      function updateMusicToggleUi() {
+        if (!musicToggle) return;
+        musicToggle.classList.toggle('is-muted', isMuted);
+        musicToggle.setAttribute('aria-pressed', isMuted ? 'true' : 'false');
+        musicToggle.setAttribute('aria-label', isMuted ? 'Unmute music' : 'Mute music');
+        sessionStorage.setItem('musicMuted', isMuted ? '1' : '0');
+        if (isMuted) resetBeatVars();
+      }
+
+      function applyMutedState() {
+        if (!scWidget || !isMuted) return;
+        scWidget.setVolume(0);
+        updateMusicToggleUi();
+      }
+
+      function toggleMute() {
+        if (!scWidget) return;
+
+        if (isMuted) {
+          scWidget.setVolume(savedVolume || 100);
+          isMuted = false;
+          updateMusicToggleUi();
+          return;
+        }
+
+        scWidget.getVolume(function (volume) {
+          savedVolume = volume > 0 ? volume : 100;
+          scWidget.setVolume(0);
+          isMuted = true;
+          updateMusicToggleUi();
+        });
+      }
+
+      function showMusicToggle() {
+        if (musicToggleRail) musicToggleRail.classList.add('is-ready');
+        if (musicToggle) musicToggle.classList.add('is-beat-sync');
+        startBeatLoop();
+      }
 
       function startMusic() {
         if (!scWidget || hasStarted) return;
@@ -282,12 +427,31 @@
         });
       }
 
+      if (musicToggle) {
+        musicToggle.addEventListener('click', function (event) {
+          event.stopPropagation();
+          if (!scWidget) return;
+          if (!hasStarted) {
+            scWidget.play();
+            hasStarted = true;
+          }
+          toggleMute();
+        });
+      }
+
       var scScript = document.createElement('script');
       scScript.src = 'https://w.soundcloud.com/player/api.js';
       scScript.onload = function () {
         scWidget = SC.Widget(scIframe);
 
         scWidget.bind(SC.Widget.Events.READY, function () {
+          initTrackBpm();
+          showMusicToggle();
+          if (isMuted) {
+            applyMutedState();
+          } else {
+            updateMusicToggleUi();
+          }
           startMusic();
           setTimeout(startMusic, 500);
           setTimeout(startMusic, 1500);
@@ -295,6 +459,17 @@
 
         scWidget.bind(SC.Widget.Events.PLAY, function () {
           hasStarted = true;
+          isPlaying = true;
+        });
+
+        scWidget.bind(SC.Widget.Events.PAUSE, function () {
+          isPlaying = false;
+          resetBeatVars();
+        });
+
+        scWidget.bind(SC.Widget.Events.PLAY_PROGRESS, function (data) {
+          lastPositionMs = data.currentPosition;
+          lastProgressAt = performance.now();
         });
 
         bindFirstInteraction();
