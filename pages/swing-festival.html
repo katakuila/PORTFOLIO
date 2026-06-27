@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swing Festival — Electronic Music</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://w.soundcloud.com" crossorigin>
+<link rel="preconnect" href="https://api.soundcloud.com" crossorigin>
+<link rel="dns-prefetch" href="https://soundcloud.com">
+<link rel="preload" href="https://w.soundcloud.com/player/api.js" as="script">
+<link rel="stylesheet" href="../style.css?v=12">
+</head>
+<body>
+  <div class="bg-layer bg-primary"></div>
+  <div class="bg-layer bg-dark"></div>
+  <div class="bg-layer bg-overlay"></div>
+
+  <header class="site-header">
+    <a href="/index.html" class="site-logo">Toke Nikolaishvili</a>
+    <button type="button" class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="/index.html">Home</a>
+      <a href="/pages/advertising.html">Advertising</a>
+      <a href="/pages/artist.html">Artist</a>
+      <a href="/pages/swing-festival.html">Swing</a>
+      <a href="/pages/contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="music-toggle-rail" id="musicToggleRail">
+    <button type="button" class="music-toggle" id="musicToggle" aria-label="Mute music" aria-pressed="false">
+      <span class="music-toggle__viz" aria-hidden="true">
+        <svg class="music-toggle__wave" viewBox="0 0 24 14" width="24" height="14" fill="none" stroke="currentColor" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round">
+          <path class="music-toggle__wave-path music-toggle__wave-path--back" d="M0 7 C2 5.5 4 8.5 6 7 S10 5.5 12 7 S16 8.5 18 7 S22 5.5 24 7"/>
+          <path class="music-toggle__wave-path music-toggle__wave-path--front" d="M0 7 C2 8.5 4 5.5 6 7 S10 8.5 12 7 S16 5.5 18 7 S22 8.5 24 7"/>
+        </svg>
+      </span>
+      <svg class="music-toggle__icon music-toggle__icon--off" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M11 5 6 9H3v6h3l5 4V5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+        <line x1="16" y1="9" x2="22" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="22" y1="9" x2="16" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="page-root">
+
+  <main class="page-content festival-page">
+    <div class="page-section">
+
+      <!-- Hero -->
+      <section class="festival-hero" aria-labelledby="festival-title">
+        <div class="festival-hero__media">
+          <!-- Replace with: ../images/swing/hero.jpg -->
+          <div class="festival-img-placeholder festival-img-placeholder--hero">
+            <span>Hero image</span>
+            <small>images/swing/hero.jpg</small>
+          </div>
+        </div>
+        <div class="festival-hero__content">
+          <p class="festival-hero__eyebrow">Festival</p>
+          <h1 class="festival-hero__title" id="festival-title">Swing Festival</h1>
+          <p class="festival-hero__tagline">
+            Georgian underground electronic music on the Black Sea coast &mdash; three days, three stages,
+            local and international artists far from the capital.
+          </p>
+          <ul class="festival-hero__meta">
+            <li><span class="festival-hero__meta-label">Since</span> 2021</li>
+            <li><span class="festival-hero__meta-label">Home</span> Poti, Georgia</li>
+            <li><span class="festival-hero__meta-label">Focus</span> Electronic &amp; underground</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="festival-block" aria-labelledby="festival-about-title">
+        <p class="page-label">About</p>
+        <h2 class="page-title page-title--section" id="festival-about-title">Sound by the sea</h2>
+        <div class="festival-about">
+          <p>
+            Swing Festival was founded in 2021 to bring together Georgian and international artists,
+            support the regional electronic scene, and create a space where music lovers share a
+            proper festival experience on the shores of ancient Colchis.
+          </p>
+          <p>
+            The inaugural edition took place near Golden Lake in Poti &mdash; three stages, more than
+            70 acts, and a crowd ready to dance after a long season of digital-only nights. Since then,
+            Swing has expanded to club takeovers in Batumi and Tbilisi while keeping its roots on the coast.
+          </p>
+          <p>
+            Co-founded by Tornike &ldquo;Toke&rdquo; Nikolaishvili alongside the Swing team, the festival
+            puts artist support first: obscure taste, long sets, and lineups that balance established names
+            with emerging voices from Georgia and abroad.
+          </p>
+        </div>
+      </section>
+
+      <!-- Quick facts -->
+      <section class="festival-stats" aria-label="Festival highlights">
+        <div class="festival-stat">
+          <p class="festival-stat__value">3</p>
+          <p class="festival-stat__label">Stages</p>
+        </div>
+        <div class="festival-stat">
+          <p class="festival-stat__value">70+</p>
+          <p class="festival-stat__label">Artists (2021)</p>
+        </div>
+        <div class="festival-stat">
+          <p class="festival-stat__value">3</p>
+          <p class="festival-stat__label">Days</p>
+        </div>
+        <div class="festival-stat">
+          <p class="festival-stat__value">Golden Lake</p>
+          <p class="festival-stat__label">Poti coastline</p>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Editions -->
+      <section class="festival-block" aria-labelledby="festival-editions-title">
+        <p class="page-label">Editions</p>
+        <h2 class="page-title page-title--section" id="festival-editions-title">Past &amp; present</h2>
+        <div class="festival-editions">
+
+          <article class="festival-edition-card">
+            <div class="festival-edition-card__visual">
+              <div class="festival-img-placeholder festival-img-placeholder--edition">
+                <span>2021</span>
+                <small>images/swing/editions/2021.jpg</small>
+              </div>
+            </div>
+            <div class="festival-edition-card__body">
+              <p class="festival-edition-card__year">2021</p>
+              <h3 class="festival-edition-card__title">Inaugural Edition</h3>
+              <p class="festival-edition-card__location">Golden Lake &middot; Poti</p>
+              <p class="festival-edition-card__dates">30 July &ndash; 1 August</p>
+              <p class="festival-edition-card__text">
+                Three open-air stages beside the Black Sea. DVS1, Jane Fitz, Francesco Del Garda, NEWA,
+                HVL, Toke Live, and dozens more from Georgia&rsquo;s underground.
+              </p>
+              <p class="festival-edition-card__stages">Stages: Main &middot; Lake &middot; Forest</p>
+            </div>
+          </article>
+
+          <article class="festival-edition-card">
+            <div class="festival-edition-card__visual">
+              <div class="festival-img-placeholder festival-img-placeholder--edition">
+                <span>2022</span>
+                <small>images/swing/editions/2022.jpg</small>
+              </div>
+            </div>
+            <div class="festival-edition-card__body">
+              <p class="festival-edition-card__year">2022</p>
+              <h3 class="festival-edition-card__title">Batumi &amp; Poti</h3>
+              <p class="festival-edition-card__location">Batumi clubs &middot; Golden Lake</p>
+              <p class="festival-edition-card__dates">5 &ndash; 7 August</p>
+              <p class="festival-edition-card__text">
+                A seaside adventure across Bahn, Zgvaze, Gate, Botanico, and the lake site.
+                Helena Hauff, Oscar Mulero, Zurkin, Sevda, Skyra, Hatsvali, and the wider Georgian scene.
+              </p>
+              <p class="festival-edition-card__stages">Club stages + open-air return</p>
+            </div>
+          </article>
+
+          <article class="festival-edition-card">
+            <div class="festival-edition-card__visual">
+              <div class="festival-img-placeholder festival-img-placeholder--edition">
+                <span>Club</span>
+                <small>images/swing/editions/mtkvarze.jpg</small>
+              </div>
+            </div>
+            <div class="festival-edition-card__body">
+              <p class="festival-edition-card__year">Winter</p>
+              <h3 class="festival-edition-card__title">Mtkvarze Takeover</h3>
+              <p class="festival-edition-card__location">Mtkvarze &middot; Tbilisi</p>
+              <p class="festival-edition-card__dates">6 &ndash; 7 January</p>
+              <p class="festival-edition-card__text">
+                Swing moves indoors: Call Super, Alec Falconer, Ash Scholem, Hatsvali B2B Toke,
+                and a focused club program between festival seasons.
+              </p>
+              <p class="festival-edition-card__stages">2 nights &middot; Mtkvarze</p>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Lineup -->
+      <section class="festival-block" aria-labelledby="festival-lineup-title">
+        <p class="page-label">Lineup</p>
+        <h2 class="page-title page-title--section" id="festival-lineup-title">Artists who played</h2>
+        <p class="festival-section-intro">
+          Featured acts from past editions. Add photos to <code>images/swing/djs/</code> and link each artist
+          to SoundCloud, RA, or Instagram.
+        </p>
+
+        <div class="festival-dj-grid">
+
+          <article class="festival-dj-card">
+            <div class="festival-dj-card__img">
+              <div class="festival-img-placeholder"><span>Toke</span></div>
+            </div>
+            <div class="festival-dj-card__body">
+              <h3 class="festival-dj-card__name">Toke</h3>
+              <p class="festival-dj-card__role">Live &middot; Co-founder</p>
+              <p class="festival-dj-card__editions">2021 &middot; Mtkvarze</p>
+              <div class="festival-dj-card__links">
+                <a href="https://soundcloud.com/toke3" target="_blank" rel="noopener">SoundCloud</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="festival-dj-card">
+            <div class="festival-dj-card__img">
+              <div class="festival-img-placeholder"><span>DVS1</span></div>
+            </div>
+            <div class="festival-dj-card__body">
+              <h3 class="festival-dj-card__name">DVS1</h3>
+              <p class="festival-dj-card__role">DJ</p>
+              <p class="festival-dj-card__editions">2021</p>
+              <div class="festival-dj-card__links">
+                <a href="https://soundcloud.com/dvs1" target="_blank" rel="noopener">SoundCloud</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="festival-dj-card">
+            <div class="festival-dj-card__img">
+              <div class="festival-img-placeholder"><span>Jane Fitz</span></div>
+            </div>
+            <div class="festival-dj-card__body">
+              <h3 class="festival-dj-card__name">Jane Fitz</h3>
+              <p class="festival-dj-card__role">DJ</p>
+              <p class="festival-dj-card__editions">2021</p>
+              <div class="festival-dj-card__links">
+                <a href="https://soundcloud.com/janefitz" target="_blank" rel="noopener">SoundCloud</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="festival-dj-card">
+            <div class="festival-dj-card__img">
+              <div class="festival-img-placeholder"><span>HVL</span></div>
+            </div>
+            <div class="festival-dj-card__body">
+              <h3 class="festival-dj-card__name">HVL</h3>
+              <p class="festival-dj-card__role">Live</p>
+              <p class="festival-dj-card__editions">2021</p>
+              <div class="festival-dj-card__links">
+                <a href="https://soundcloud.com/hvl" target="_blank" rel="noopener">SoundCloud</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="festival-dj-card">
+            <div class="festival-dj-card__img">
+              <div class="festival-img-placeholder"><span>Francesco</span></div>
+            </div>
+            <div class="festival-dj-card__body">
+              <h3 class="festival-dj-card__name">Francesco Del Garda</h3>
+              <p class="festival-dj-card__role">DJ</p>
+              <p class="festival-dj-card__editions">2021</p>
+              <div class="festival-dj-card__links">
+                <a href="https://soundcloud.com/francescodelgarda" target="_blank" rel="noopener">SoundCloud</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="festival-dj-card">
+            <div class="festival-dj-card__img">
+              <div class="festival-img-placeholder"><span>NEWA</span></div>
+            </div>
+            <div class="festival-dj-card__body">
+              <h3 class="festival-dj-card__name">NEWA</h3>
+              <p class="festival-dj-card__role">DJ</p>
+              <p class="festival-dj-card__editions">2021</p>
+              <div class="festival-dj-card__links">
+                <a href="https://soundcloud.com/newa" target="_blank" rel="noopener">SoundCloud</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="festival-dj-card">
+            <div class="festival-dj-card__img">
+              <div class="festival-img-placeholder"><span>Hatsvali</span></div>
+            </div>
+            <div class="festival-dj-card__body">
+              <h3 class="festival-dj-card__name">Hatsvali</h3>
+              <p class="festival-dj-card__role">DJ &middot; B2B</p>
+              <p class="festival-dj-card__editions">2021 &middot; Mtkvarze</p>
+              <div class="festival-dj-card__links">
+                <a href="https://soundcloud.com/htsvl" target="_blank" rel="noopener">SoundCloud</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="festival-dj-card">
+            <div class="festival-dj-card__img">
+              <div class="festival-img-placeholder"><span>Call Super</span></div>
+            </div>
+            <div class="festival-dj-card__body">
+              <h3 class="festival-dj-card__name">Call Super</h3>
+              <p class="festival-dj-card__role">DJ / Live</p>
+              <p class="festival-dj-card__editions">Mtkvarze</p>
+              <div class="festival-dj-card__links">
+                <a href="https://soundcloud.com/call-super" target="_blank" rel="noopener">SoundCloud</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="festival-dj-card">
+            <div class="festival-dj-card__img">
+              <div class="festival-img-placeholder"><span>Helena</span></div>
+            </div>
+            <div class="festival-dj-card__body">
+              <h3 class="festival-dj-card__name">Helena Hauff</h3>
+              <p class="festival-dj-card__role">DJ</p>
+              <p class="festival-dj-card__editions">2022</p>
+              <div class="festival-dj-card__links">
+                <a href="https://soundcloud.com/helena-hauff" target="_blank" rel="noopener">SoundCloud</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="festival-dj-card">
+            <div class="festival-dj-card__img">
+              <div class="festival-img-placeholder"><span>Zurkin</span></div>
+            </div>
+            <div class="festival-dj-card__body">
+              <h3 class="festival-dj-card__name">Zurkin</h3>
+              <p class="festival-dj-card__role">DJ</p>
+              <p class="festival-dj-card__editions">2021 &middot; 2022</p>
+              <div class="festival-dj-card__links">
+                <a href="https://soundcloud.com/zurkin" target="_blank" rel="noopener">SoundCloud</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="festival-dj-card">
+            <div class="festival-dj-card__img">
+              <div class="festival-img-placeholder"><span>Sevda</span></div>
+            </div>
+            <div class="festival-dj-card__body">
+              <h3 class="festival-dj-card__name">Sevda</h3>
+              <p class="festival-dj-card__role">DJ</p>
+              <p class="festival-dj-card__editions">2021 &middot; 2022</p>
+              <div class="festival-dj-card__links">
+                <a href="https://soundcloud.com/sevda" target="_blank" rel="noopener">SoundCloud</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="festival-dj-card">
+            <div class="festival-dj-card__img">
+              <div class="festival-img-placeholder"><span>Skyra</span></div>
+            </div>
+            <div class="festival-dj-card__body">
+              <h3 class="festival-dj-card__name">Skyra</h3>
+              <p class="festival-dj-card__role">Live</p>
+              <p class="festival-dj-card__editions">2021 &middot; 2022</p>
+              <div class="festival-dj-card__links">
+                <a href="https://soundcloud.com/skyra" target="_blank" rel="noopener">SoundCloud</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <p class="festival-lineup-note">
+          Full 2021 lineup included 70+ artists &mdash; Evan Baggs, Gacha, Hamatsuki, Kilski, Kraumur,
+          Nicole, Rydeen, Ash Scholem, and many more. Duplicate the card block above to add them.
+        </p>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Gallery -->
+      <section class="festival-block" aria-labelledby="festival-gallery-title">
+        <p class="page-label">Gallery</p>
+        <h2 class="page-title page-title--section" id="festival-gallery-title">Moments</h2>
+        <p class="festival-section-intro">
+          Drop photos into <code>images/swing/gallery/</code> and swap placeholders for
+          <code>&lt;img src="..." alt="..." loading="lazy"&gt;</code>.
+        </p>
+
+        <div class="festival-gallery">
+          <figure class="festival-gallery__item festival-gallery__item--wide">
+            <div class="festival-img-placeholder festival-img-placeholder--gallery"><span>01</span></div>
+          </figure>
+          <figure class="festival-gallery__item">
+            <div class="festival-img-placeholder festival-img-placeholder--gallery"><span>02</span></div>
+          </figure>
+          <figure class="festival-gallery__item">
+            <div class="festival-img-placeholder festival-img-placeholder--gallery"><span>03</span></div>
+          </figure>
+          <figure class="festival-gallery__item">
+            <div class="festival-img-placeholder festival-img-placeholder--gallery"><span>04</span></div>
+          </figure>
+          <figure class="festival-gallery__item">
+            <div class="festival-img-placeholder festival-img-placeholder--gallery"><span>05</span></div>
+          </figure>
+          <figure class="festival-gallery__item festival-gallery__item--wide">
+            <div class="festival-img-placeholder festival-img-placeholder--gallery"><span>06</span></div>
+          </figure>
+        </div>
+      </section>
+
+      <div class="section-divider"></div>
+
+      <!-- Tickets & links -->
+      <section class="festival-block festival-cta" aria-labelledby="festival-cta-title">
+        <p class="page-label">Next edition</p>
+        <h2 class="page-title page-title--section" id="festival-cta-title">Stay in the loop</h2>
+        <p class="festival-cta__text">
+          Dates, tickets, and lineup for the next Swing edition will appear here.
+          Follow the festival channels for announcements.
+        </p>
+
+        <div class="festival-links">
+          <a class="festival-link-card" href="#" aria-label="Swing Festival on Instagram">
+            <span class="festival-link-card__label">Instagram</span>
+            <span class="festival-link-card__hint">Add @handle</span>
+          </a>
+          <a class="festival-link-card" href="https://eventer.ge" target="_blank" rel="noopener">
+            <span class="festival-link-card__label">Eventer</span>
+            <span class="festival-link-card__hint">Tickets &amp; events</span>
+          </a>
+          <a class="festival-link-card" href="https://georgia.travel/swing-festival" target="_blank" rel="noopener">
+            <span class="festival-link-card__label">Georgia Travel</span>
+            <span class="festival-link-card__hint">Festival guide</span>
+          </a>
+          <a class="festival-link-card" href="/pages/contact.html">
+            <span class="festival-link-card__label">Contact</span>
+            <span class="festival-link-card__hint">Bookings &amp; press</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  </div>
+
+  <div class="soundcloud-hidden" id="soundcloudBar" data-track="https://soundcloud.com/batterdown/indigo" data-bpm="130" data-beat-offset="1">
+    <iframe
+      id="soundcloudPlayer"
+      title="SoundCloud player"
+      src="https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fbatterdown%2Findigo&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_teaser=false&amp;visual=false&amp;color=ffffff"
+      allow="autoplay"
+      scrolling="no"
+      frameborder="no"
+    ></iframe>
+  </div>
+
+  <script src="../script.js?v=14"></script>
+</body>
+</html>
