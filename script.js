@@ -422,13 +422,13 @@
     if (!wrap) return;
 
     var video = wrap.querySelector('.festival-hero__video');
-    var muteBtn = wrap.querySelector('.festival-hero__mute');
-    if (!video || !muteBtn) return;
+    var playBtn = wrap.querySelector('.festival-hero__play');
+    if (!video || !playBtn) return;
 
-    function updateMuteUi() {
-      muteBtn.classList.toggle('is-muted', video.muted);
-      muteBtn.setAttribute('aria-pressed', video.muted ? 'true' : 'false');
-      muteBtn.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
+    function updatePlayUi() {
+      playBtn.classList.toggle('is-playing', !video.paused);
+      playBtn.setAttribute('aria-label', video.paused ? 'Play video' : 'Pause video');
+      playBtn.setAttribute('aria-pressed', video.paused ? 'false' : 'true');
     }
 
     function tryPlay() {
@@ -438,30 +438,31 @@
       }
     }
 
-    function onMuteClick() {
-      video.muted = !video.muted;
-      updateMuteUi();
-      if (!video.muted) tryPlay();
+    function onPlayClick() {
+      if (video.paused) {
+        tryPlay();
+      } else {
+        video.pause();
+      }
+      updatePlayUi();
     }
 
     function onVisibility() {
-      if (document.hidden) {
-        video.pause();
-        return;
-      }
-      tryPlay();
+      if (document.hidden) video.pause();
     }
 
-    muteBtn.addEventListener('click', onMuteClick);
-    video.addEventListener('loadeddata', tryPlay);
+    playBtn.addEventListener('click', onPlayClick);
+    video.addEventListener('play', updatePlayUi);
+    video.addEventListener('pause', updatePlayUi);
     document.addEventListener('visibilitychange', onVisibility);
-    updateMuteUi();
-    tryPlay();
+    updatePlayUi();
 
     var prevCleanup = window.__portfolioPage && window.__portfolioPage.cleanup;
     window.__portfolioPage = {
       cleanup: function () {
-        muteBtn.removeEventListener('click', onMuteClick);
+        playBtn.removeEventListener('click', onPlayClick);
+        video.removeEventListener('play', updatePlayUi);
+        video.removeEventListener('pause', updatePlayUi);
         document.removeEventListener('visibilitychange', onVisibility);
         video.pause();
         if (typeof prevCleanup === 'function') prevCleanup();
