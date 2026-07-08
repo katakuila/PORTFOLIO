@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://api.soundcloud.com" crossorigin>
 <link rel="dns-prefetch" href="https://soundcloud.com">
 <link rel="preload" href="https://w.soundcloud.com/player/api.js" as="script">
-<link rel="stylesheet" href="../style.css?v=12">
+<link rel="stylesheet" href="../style.css?v=27">
 </head>
 <body>
   <div class="bg-layer bg-primary"></div>
@@ -27,7 +27,7 @@
       <a href="/index.html">Home</a>
       <a href="/pages/advertising.html">Advertising</a>
       <a href="/pages/artist.html">Artist</a>
-      <a href="/pages/swing-festival.html">Swing</a>
+      <a href="/pages/swing-festival.html">swing-festival</a>
       <a href="/pages/contact.html">Contact</a>
     </nav>
   </header>
@@ -56,10 +56,29 @@
       <!-- Hero -->
       <section class="festival-hero" aria-labelledby="festival-title">
         <div class="festival-hero__media">
-          <!-- Replace with: ../images/swing/hero.jpg -->
-          <div class="festival-img-placeholder festival-img-placeholder--hero">
-            <span>Hero image</span>
-            <small>images/swing/hero.jpg</small>
+          <div class="festival-hero__video-wrap">
+            <video
+              class="festival-hero__video"
+              src="../videos/swing%20video.mp4"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              aria-label="Swing Festival recap"
+            ></video>
+            <button type="button" class="festival-hero__mute is-muted" aria-label="Unmute video" aria-pressed="true">
+              <svg class="festival-hero__mute-icon festival-hero__mute-icon--off" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M11 5 6 9H3v6h3l5 4V5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <line x1="16" y1="9" x2="22" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <line x1="22" y1="9" x2="16" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <svg class="festival-hero__mute-icon festival-hero__mute-icon--on" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M11 5 6 9H3v6h3l5 4V5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M16 8.5a4.5 4.5 0 0 1 0 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M18.5 6a7.5 7.5 0 0 1 0 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </button>
           </div>
         </div>
         <div class="festival-hero__content">
@@ -78,25 +97,31 @@
       </section>
 
       <!-- About -->
-      <section class="festival-block" aria-labelledby="festival-about-title">
-        <p class="page-label">About</p>
-        <h2 class="page-title page-title--section" id="festival-about-title">Sound by the sea</h2>
-        <div class="festival-about">
-          <p>
-            Swing Festival was founded in 2021 to bring together Georgian and international artists,
-            support the regional electronic scene, and create a space where music lovers share a
-            proper festival experience on the shores of ancient Colchis.
-          </p>
-          <p>
-            The inaugural edition took place near Golden Lake in Poti &mdash; three stages, more than
-            70 acts, and a crowd ready to dance after a long season of digital-only nights. Since then,
-            Swing has expanded to club takeovers in Batumi and Tbilisi while keeping its roots on the coast.
-          </p>
-          <p>
-            Co-founded by Tornike &ldquo;Toke&rdquo; Nikolaishvili alongside the Swing team, the festival
-            puts artist support first: obscure taste, long sets, and lineups that balance established names
-            with emerging voices from Georgia and abroad.
-          </p>
+      <section class="festival-about-banner" aria-labelledby="festival-about-title">
+        <div class="festival-about-banner__bg" aria-hidden="true">
+          <img src="../images/swing/swing-logo.png" alt="">
+        </div>
+        <div class="festival-about-banner__overlay" aria-hidden="true"></div>
+        <div class="festival-about-banner__content">
+          <p class="festival-about-banner__label">About</p>
+          <h2 class="festival-about-banner__title" id="festival-about-title">Sound by the sea</h2>
+          <div class="festival-about-banner__text">
+            <p>
+              Swing Festival was founded in 2021 to bring together Georgian and international artists,
+              support the regional electronic scene, and create a space where music lovers share a
+              proper festival experience on the shores of ancient Colchis.
+            </p>
+            <p>
+              The inaugural edition took place near Golden Lake in Poti &mdash; three stages, more than
+              70 acts, and a crowd ready to dance after a long season of digital-only nights. Since then,
+              Swing has expanded to club takeovers in Batumi and Tbilisi while keeping its roots on the coast.
+            </p>
+            <p>
+              Co-founded by Tornike &ldquo;Toke&rdquo; Nikolaishvili alongside the Swing team, the festival
+              puts artist support first: obscure taste, long sets, and lineups that balance established names
+              with emerging voices from Georgia and abroad.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -193,16 +218,24 @@
 
       <div class="section-divider"></div>
 
-      <!-- Lineup -->
-      <section class="festival-block" aria-labelledby="festival-lineup-title">
-        <p class="page-label">Lineup</p>
-        <h2 class="page-title page-title--section" id="festival-lineup-title">Artists who played</h2>
-        <p class="festival-section-intro">
-          Featured acts from past editions. Add photos to <code>images/swing/djs/</code> and link each artist
-          to SoundCloud, RA, or Instagram.
-        </p>
+      <div class="festival-poster-zone">
+        <div class="festival-poster-zone__bg" aria-hidden="true">
+          <img src="../images/swing/swing-lineup-poster.jpg" alt="">
+        </div>
+        <div class="festival-poster-zone__overlay" aria-hidden="true"></div>
+        <div class="festival-poster-zone__inner">
 
-        <div class="festival-dj-grid">
+      <!-- Lineup -->
+      <section class="festival-lineup-banner" aria-labelledby="festival-lineup-title">
+        <div class="festival-poster-zone__content">
+          <p class="page-label">Lineup</p>
+          <h2 class="page-title page-title--section" id="festival-lineup-title">Artists who played</h2>
+          <p class="festival-section-intro">
+            Featured acts from past editions.  link each artist
+            to SoundCloud, RA, or Instagram.
+          </p>
+
+          <div class="festival-dj-grid">
 
           <article class="festival-dj-card">
             <div class="festival-dj-card__img">
@@ -372,13 +405,17 @@
             </div>
           </article>
 
-        </div>
+          </div>
 
-        <p class="festival-lineup-note">
-          Full 2021 lineup included 70+ artists &mdash; Evan Baggs, Gacha, Hamatsuki, Kilski, Kraumur,
-          Nicole, Rydeen, Ash Scholem, and many more. Duplicate the card block above to add them.
-        </p>
+          <p class="festival-lineup-note">
+            Full 2021 lineup included 70+ artists &mdash; Evan Baggs, Gacha, Hamatsuki, Kilski, Kraumur,
+            Nicole, Rydeen, Ash Scholem, and many more. 
+          </p>
+        </div>
       </section>
+
+        </div>
+      </div>
 
       <div class="section-divider"></div>
 
@@ -386,10 +423,7 @@
       <section class="festival-block" aria-labelledby="festival-gallery-title">
         <p class="page-label">Gallery</p>
         <h2 class="page-title page-title--section" id="festival-gallery-title">Moments</h2>
-        <p class="festival-section-intro">
-          Drop photos into <code>images/swing/gallery/</code> and swap placeholders for
-          <code>&lt;img src="..." alt="..." loading="lazy"&gt;</code>.
-        </p>
+     
 
         <div class="festival-gallery">
           <figure class="festival-gallery__item festival-gallery__item--wide">
@@ -460,6 +494,6 @@
     ></iframe>
   </div>
 
-  <script src="../script.js?v=14"></script>
+  <script src="../script.js?v=16"></script>
 </body>
 </html>

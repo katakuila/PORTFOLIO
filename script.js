@@ -308,13 +308,27 @@
 
     var activeThumb = null;
 
+    function isLocalVideoSrc(url) {
+      return /\.(mp4|webm|mov)(\?|#|$)/i.test(url || '');
+    }
+
     function resetThumb(thumb) {
       if (!thumb) return;
       var originalSrc = thumb.getAttribute('data-src');
+      var isLocalVideo = thumb.getAttribute('data-type') === 'file' || isLocalVideoSrc(originalSrc);
       var poster = thumb.getAttribute('data-poster');
       thumb.innerHTML = '';
       thumb.style.cursor = 'pointer';
-      if (poster) {
+      if (isLocalVideo) {
+        var preview = document.createElement('video');
+        preview.className = 'video-thumb__img';
+        preview.src = originalSrc;
+        preview.muted = true;
+        preview.playsInline = true;
+        preview.preload = 'metadata';
+        preview.setAttribute('aria-label', 'Video preview');
+        thumb.appendChild(preview);
+      } else if (poster) {
         var img = document.createElement('img');
         img.className = 'video-thumb__img';
         img.src = poster;
@@ -354,15 +368,27 @@
       thumb.addEventListener('click', function () {
         if (thumb === activeThumb) return;
         stopActiveVideo();
-        var src = getVideoEmbedUrl(thumb.getAttribute('data-src'));
-        var iframe = document.createElement('iframe');
-        iframe.setAttribute('src', src);
-        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
-        iframe.setAttribute('allowfullscreen', '');
-        iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
+        var rawSrc = thumb.getAttribute('data-src');
+        var isLocalVideo = thumb.getAttribute('data-type') === 'file' || isLocalVideoSrc(rawSrc);
         thumb.innerHTML = '';
         thumb.style.cursor = 'default';
-        thumb.appendChild(iframe);
+        if (isLocalVideo) {
+          var video = document.createElement('video');
+          video.setAttribute('src', rawSrc);
+          video.setAttribute('controls', '');
+          video.setAttribute('autoplay', '');
+          video.setAttribute('playsinline', '');
+          video.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;';
+          thumb.appendChild(video);
+        } else {
+          var src = getVideoEmbedUrl(rawSrc);
+          var iframe = document.createElement('iframe');
+          iframe.setAttribute('src', src);
+          iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+          iframe.setAttribute('allowfullscreen', '');
+          iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:none;';
+          thumb.appendChild(iframe);
+        }
         activeThumb = thumb;
       });
     }
@@ -391,10 +417,63 @@
     };
   }
 
+  function initFestivalHeroVideo() {
+    var wrap = document.querySelector('.festival-hero__video-wrap');
+    if (!wrap) return;
+
+    var video = wrap.querySelector('.festival-hero__video');
+    var muteBtn = wrap.querySelector('.festival-hero__mute');
+    if (!video || !muteBtn) return;
+
+    function updateMuteUi() {
+      muteBtn.classList.toggle('is-muted', video.muted);
+      muteBtn.setAttribute('aria-pressed', video.muted ? 'true' : 'false');
+      muteBtn.setAttribute('aria-label', video.muted ? 'Unmute video' : 'Mute video');
+    }
+
+    function tryPlay() {
+      var playAttempt = video.play();
+      if (playAttempt && typeof playAttempt.catch === 'function') {
+        playAttempt.catch(function () {});
+      }
+    }
+
+    function onMuteClick() {
+      video.muted = !video.muted;
+      updateMuteUi();
+      if (!video.muted) tryPlay();
+    }
+
+    function onVisibility() {
+      if (document.hidden) {
+        video.pause();
+        return;
+      }
+      tryPlay();
+    }
+
+    muteBtn.addEventListener('click', onMuteClick);
+    video.addEventListener('loadeddata', tryPlay);
+    document.addEventListener('visibilitychange', onVisibility);
+    updateMuteUi();
+    tryPlay();
+
+    var prevCleanup = window.__portfolioPage && window.__portfolioPage.cleanup;
+    window.__portfolioPage = {
+      cleanup: function () {
+        muteBtn.removeEventListener('click', onMuteClick);
+        document.removeEventListener('visibilitychange', onVisibility);
+        video.pause();
+        if (typeof prevCleanup === 'function') prevCleanup();
+      }
+    };
+  }
+
   function initCurrentPage() {
     destroyCurrentPage();
     initPageReveal();
     initVideos();
+    initFestivalHeroVideo();
     updateActiveNav();
     if (document.getElementById('radialCanvas')) {
       requestAnimationFrame(function () {
