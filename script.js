@@ -112,7 +112,17 @@
         '.release-card',
         '.vcard',
         '.logo-card',
-        '.page-placeholder-text'
+        '.page-placeholder-text',
+        '.festival-hero',
+        '.festival-about-banner',
+        '.festival-stat',
+        '.festival-edition-card',
+        '.festival-section-intro',
+        '.festival-dj-card',
+        '.festival-lineup-note',
+        '.festival-gallery__item',
+        '.festival-cta__text',
+        '.festival-link-card'
       ].join(', ');
 
       main.querySelectorAll(revealSelector).forEach(add);

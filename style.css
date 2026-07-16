@@ -1,6 +1,23 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { width: 100%; min-height: 100%; }
+
+  :root {
+    --font-body: "Avenir Next", "Avenir Next LT Pro", Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  html, body {
+    width: 100%;
+    min-height: 100%;
+    font-family: var(--font-body);
+  }
+
   body { position: relative; }
+
+  button,
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+  }
   
   .bg-layer {
     position: fixed;
@@ -63,7 +80,7 @@
   .site-nav a {
     color: rgba(255, 255, 255, 0.65);
     text-decoration: none;
-    font-family: 'Georgia', 'Times New Roman', serif;
+    font-family: var(--font-body);
     font-size: 0.72rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -139,7 +156,7 @@
   }
 
   .site-logo {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: var(--font-body);
     font-size: 0.82rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -323,7 +340,7 @@
     -webkit-appearance: none;
     appearance: none;
     color: rgba(255, 255, 255, 0.55);
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.62rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -522,7 +539,7 @@
   }
 
   .page-label {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 1.65rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -531,7 +548,7 @@
   }
 
   .page-title {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 1.6rem;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.95);
@@ -540,7 +557,7 @@
   }
 
   .page-title-release {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.85rem;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.95);
@@ -554,7 +571,7 @@
   }
 
   .page-subtitle {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.7rem;
     letter-spacing: 0.25em;
     text-transform: uppercase;
@@ -563,12 +580,62 @@
   }
 
   .bio-text p {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.92rem;
     line-height: 1.85;
     color: rgba(255, 255, 255, 0.7);
     margin: 0 0 1.2rem;
     text-align: left;
+  }
+
+  .about-header {
+    text-align: center;
+    margin: 0 0 2.75rem;
+  }
+
+  .about-header .scroll-cue__text {
+    margin-bottom: 1rem;
+  }
+
+  .about-header .page-title {
+    text-align: center;
+  }
+
+  .about-header .page-subtitle {
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  .about-split {
+    display: grid;
+    grid-template-columns: minmax(260px, 0.9fr) 1.1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-split__media {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 22px 60px rgba(0, 0, 0, 0.45);
+    background: #0a0a0a;
+  }
+
+  .about-split__media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .about-split__content {
+    text-align: left;
+    min-width: 0;
+  }
+
+  .about-rest {
+    width: 100%;
   }
 
   .section-divider {
@@ -586,7 +653,7 @@
   }
 
   .skills-col-label {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.6rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -605,7 +672,7 @@
   }
 
   .skills-list li {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.65);
     padding: 0.35rem 0;
@@ -622,7 +689,7 @@
   }
 
   .availability-text {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.65);
     line-height: 1.7;
@@ -670,7 +737,7 @@
   }
 
   .logo-card span {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.72rem;
     color: rgba(255, 255, 255, 0.6);
     letter-spacing: 0.12em;
@@ -740,7 +807,7 @@
     font-size: 13px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.88);
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     letter-spacing: 0.03em;
   }
 
@@ -753,7 +820,7 @@
   }
 
   .page-placeholder-text {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.92rem;
     line-height: 1.85;
     color: rgba(255, 255, 255, 0.55);
@@ -762,7 +829,7 @@
   }
 
   .contact-note {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.75rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -777,7 +844,7 @@
   }
 
   .contact-intro {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.92rem;
     line-height: 1.85;
     color: rgba(255, 255, 255, 0.55);
@@ -795,7 +862,7 @@
   }
 
   .contact-block__label {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.65rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -841,7 +908,7 @@
   }
 
   .social-card__name {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.82rem;
     color: rgba(255, 255, 255, 0.9);
     letter-spacing: 0.04em;
@@ -897,11 +964,11 @@
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.35);
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
   }
 
   .contact-card__value {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.78rem;
     color: rgba(255, 255, 255, 0.85);
     letter-spacing: 0.02em;
@@ -923,7 +990,7 @@
   }
 
   .artist-bio__eyebrow {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 1.65rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -932,7 +999,7 @@
   }
 
   .artist-bio__name {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-weight: 400;
     font-size: 2.6rem;
     letter-spacing: 0.02em;
@@ -1028,7 +1095,7 @@
 
   .release-card__title {
     margin: 0;
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.9);
     letter-spacing: 0.03em;
@@ -1046,7 +1113,7 @@
     margin: 3.5rem 0 0;
     padding-bottom: 2rem;
     border-bottom: 0.5px solid rgba(252, 247, 247, 0.08);
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 1rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -1125,6 +1192,16 @@
     .skills-grid,
     .video-grid {
       grid-template-columns: 1fr;
+    }
+
+    .about-split {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .about-split__media {
+      max-width: 420px;
+      margin-inline: auto;
     }
 
     .toolkit-grid {
@@ -1246,7 +1323,7 @@
   }
 
   .festival-hero__eyebrow {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 1.65rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -1255,7 +1332,7 @@
   }
 
   .festival-hero__title {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-weight: 400;
     font-size: clamp(2.2rem, 4vw, 3.2rem);
     letter-spacing: 0.04em;
@@ -1289,7 +1366,7 @@
 
   .festival-hero__meta-label {
     display: block;
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.68rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -1365,7 +1442,7 @@
   }
 
   .festival-about-banner__label {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.72rem;
     letter-spacing: 0.28em;
     text-transform: uppercase;
@@ -1374,7 +1451,7 @@
   }
 
   .festival-about-banner__title {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-weight: 400;
     font-size: clamp(1.5rem, 3vw, 2rem);
     letter-spacing: 0.05em;
@@ -1547,7 +1624,7 @@
   }
 
   .festival-stat__value {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 1.35rem;
     color: #fff;
     margin: 0 0 0.35rem;
@@ -1603,7 +1680,7 @@
   }
 
   .festival-edition-card__year {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 0.72rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -1612,7 +1689,7 @@
   }
 
   .festival-edition-card__title {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-weight: 400;
     font-size: 1.35rem;
     color: #fff;
@@ -1679,7 +1756,7 @@
   }
 
   .festival-dj-card__name {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-weight: 400;
     font-size: 1.05rem;
     color: #fff;
@@ -1782,7 +1859,7 @@
     min-height: 120px;
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
     color: rgba(255, 255, 255, 0.35);
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 1rem;
     letter-spacing: 0.08em;
     text-align: center;
@@ -1790,7 +1867,7 @@
   }
 
   .festival-img-placeholder small {
-    font-family: system-ui, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.62rem;
     letter-spacing: 0.04em;
     color: rgba(255, 255, 255, 0.28);
@@ -1840,7 +1917,7 @@
   }
 
   .festival-link-card__label {
-    font-family: Georgia, serif;
+    font-family: var(--font-body);
     font-size: 1rem;
     color: #fff;
     letter-spacing: 0.04em;
